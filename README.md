@@ -76,15 +76,14 @@
         <text x="100" y="120" font-family="Arial, sans-serif" font-size="18" fill="white" text-anchor="middle">COMENY</text>
     </svg>
     
-    <div class="welcome-line">HELLO WELOCOM MY COMPANY</div>
+    <div class="welcome-line">HELLO WELCOM MY COMPANY</div>
     
     <h1>SB COMENY</h1>
     <p>Welcome to SB COMENY! This is the starting page of your dream company. We're just getting started—stay tuned for more!</p>
     
     <!-- Personal Details Section -->
     <div class="personal-details">
-        <img class="photo" src="https://via.placeholder.com/100" alt="Your Photo"> <!-- Replace with your photo URL or file path -->
-        <div class="details">
+src="https://drive.google.com/uc?id=1DfCcZW0Bw_TP1P2u-riwYhJmJV0i5iHl" alt="Mohd Bilal Profile Picture" class="profile-img">        <div class="details">
             <h2>Mohd Bilal</h2>
             <p><strong>Mobile:</strong> +91 1268315526</p>
             <p><strong>Email:</strong> riyan.khan4712@gmail.com</p>
