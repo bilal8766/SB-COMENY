@@ -76,7 +76,7 @@
     
     <!-- Personal Details Section -->
     <div class="personal-details">
-        <img class="photo" src="https://via.placeholder.com/100" alt="Your Photo"> <!-- Replace with your photo URL or file path -->
+       <div class="welcome-line">HELLO WELOCOM MY COMPANY</div>
         <div class="details">
             <h2>Mohd Bilal</h2>
             <p><strong>Mobile:</strong> 9813399376</p>
