@@ -1,10 +1,10 @@
-[< Mohd Bilal  singarya>
+<Mohd Bilal>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SB COMENY - Welcome</title>
-    <meta name="description" content="Welcome to SB COMENY, Thax visite My Comapany. Contact Mohd Bilal at 9813490892 or riyan.khan4712@gmail.com for more details.">
+    <meta name="description" content="Welcome to SB COMENY, your dream company from Haryana. Contact Mohd Bilal at 9813490892 or riyan.khan4712@gmail.com for more details.">
     <meta name="keywords" content="SB COMENY, company, Haryana, Mohd Bilal, business">
     <style>
         body {
@@ -21,9 +21,9 @@
         }
         .personal-details {
             display: flex;
-            align-items: flex;
-            justify-content: flex;
-            margin: auto;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
             padding: 20px;
             background-color: white;
             border-radius: 10px;
@@ -32,7 +32,7 @@
             margin-left: auto;
             margin-right: auto;
         }
-        .photo {https://github.com/bilal8766/SB-COMENY/blob/main/bilal%20khan%20photos.jpeg
+        .photo {
             width: 100px;
             height: 100px;
             border-radius: 50%;
@@ -82,8 +82,9 @@
     <p>Welcome to SB COMENY! This is the starting page of your dream company. We're just getting started—stay tuned for more!</p>
     
     <!-- Personal Details Section -->
-    <div class="personal-details">[
-(https://github.com/bilal8766/SB-COMENY/blob/main/bilal%20khan%20photos.jpeg)>)>        <div class="details">
+    <div class="personal-details">
+        <img src="https://raw.githubusercontent.com/bilal8766/SB-COMENY/main/bilal%20khan%20photos.jpeg" alt="Mohd Bilal Profile Picture" class="photo">
+        <div class="details">
             <h2>Mohd Bilal</h2>
             <p><strong>Mobile:</strong> +91 1268315526</p>
             <p><strong>Email:</strong> riyan.khan4712@gmail.com</p>
@@ -91,6 +92,6 @@
         </div>
     </div>
     
-    <!-- You can add more sections here, like about us, contact, etc. -->](https://bilal8766.github.io/SB-COMENY/)
+    <!-- You can add more sections here, like about us, contact, etc. -->
 </body>
 </html>
