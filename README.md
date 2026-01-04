@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SB COMENY - Welcome</title>
-    <meta name="description" content="Welcome to SB COMENY, your dream company from Haryana. Contact Mohd Bilal at 9813490892 or riyan.khan4712@gmail.com for more details.">
+    <meta name="description" content="Welcome to SB COMENY, Thax visite My Comapany. Contact Mohd Bilal at 9813490892 or riyan.khan4712@gmail.com for more details.">
     <meta name="keywords" content="SB COMENY, company, Haryana, Mohd Bilal, business">
     <style>
         body {
@@ -25,7 +25,7 @@
             justify-content: center;
             margin: 20px 0;
             padding: 20px;
-            background-color: white;
+            background-color: red;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
             max-width: 600px;
