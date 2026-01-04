@@ -83,7 +83,7 @@
     
     <!-- Personal Details Section -->
     <div class="personal-details">
-src="https://drive.google.com/uc?id=1DfCcZW0Bw_TP1P2u-riwYhJmJV0i5iHl" alt="Mohd Bilal Profile Picture" class="profile-img">        <div class="details">
+src="(https://drive.google.com/uc?export=download&id=1DfCcZW0Bw_TP1P2u-riwYhJmJV0i5iHl" alt="Your Image">)>        <div class="details">
             <h2>Mohd Bilal</h2>
             <p><strong>Mobile:</strong> +91 1268315526</p>
             <p><strong>Email:</strong> riyan.khan4712@gmail.com</p>
