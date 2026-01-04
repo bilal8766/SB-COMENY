@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SB COMENY - Welcome</title>
-    <meta name="description" content="Welcome to SB COMENY, your dream company from Haryana. Contact Mohd Bilal at 9813490892 or riyan.khan4712@gmail.com for more details.">
+    <title>Bilal Singarya - Welcome</title>
+    <meta name="description" content="Welcome to SB COMENY, Thanyou Visit My Site Contact Mohd Bilal at 9813490892 or riyan.khan4712@gmail.com for more details.">
     <meta name="keywords" content="SB COMENY, company, Haryana, Mohd Bilal, business">
     <style>
         body {
@@ -107,10 +107,10 @@
         <img src="https://raw.githubusercontent.com/bilal8766/SB-COMENY/main/bilal%20khan%20photos.jpeg" alt="Mohd Bilal Profile Picture" class="photo">
         <div class="details">
             <h2>Mohd Bilal</h2>
-            <p><strong>Mobile:</strong> +91 1268315526</p>
+            <p><strong>Mobile:</strong> +91 9813490892</p>
             <p><strong>Email:</strong> riyan.khan4712@gmail.com</p>
             <p><strong>Facebook:</strong> MOHD BILAL</p>
-            <a href="tel:+911268315526" class="call-button">Call Me</a>
+            <a href="tel:+ 91 9813490892" class="call-button">Call </a>
         </div>
     </div>
     
