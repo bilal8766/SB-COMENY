@@ -58,6 +58,11 @@
             font-size: 1.2em;
             color: #666;
         }
+        .welcome-line {
+            font-size: 2em;
+            color: #4CAF50;
+            margin: 20px 0;
+        }
     </style>
 </head>
 <body>
@@ -71,16 +76,18 @@
         <text x="100" y="120" font-family="Arial, sans-serif" font-size="18" fill="white" text-anchor="middle">COMENY</text>
     </svg>
     
+    <div class="welcome-line">HELLO WELOCOM MY COMPANY</div>
+    
     <h1>SB COMENY</h1>
     <p>Welcome to SB COMENY! This is the starting page of your dream company. We're just getting started—stay tuned for more!</p>
     
     <!-- Personal Details Section -->
     <div class="personal-details">
-       <div class="welcome-line">HELLO WELOCOM MY COMPANY</div>
+        <img class="photo" src="https://via.placeholder.com/100" alt="Your Photo"> <!-- Replace with your photo URL or file path -->
         <div class="details">
             <h2>Mohd Bilal</h2>
-            <p><strong>Mobile:</strong> 9813399376</p>
-            <p><strong>Email:</strong> riyan.khan4712@gmail.com</p> 
+            <p><strong>Mobile:</strong> 9813490892</p>
+            <p><strong>Email:</strong> riyan.khan4712@gmail.com</p>
             <p><strong>Facebook:</strong> MOHD BILAL</p>
         </div>
     </div>
