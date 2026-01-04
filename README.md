@@ -1,4 +1,4 @@
-<Mohd Bilal>
+<MOHD BILAL SINGARYA.html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -17,7 +17,8 @@
         .logo {
             width: 200px;
             height: 200px;
-            margin: 0 auto 20px;
+            float: right;
+            margin-left: 20px;
         }
         .personal-details {
             display: flex;
@@ -49,6 +50,26 @@
         .details p {
             margin: 5px 0;
             color: #666;
+        }
+        .call-button {
+            display: inline-block;
+            background-color: #34C759; /* Apple green color */
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px; /* Rounded like Apple's button */
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-top: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Subtle shadow for depth */
+            transition: background-color 0.3s; /* Smooth hover effect */
+        }
+        .call-button:hover {
+            background-color: #28A745; /* Darker green on hover */
+        }
+        .call-button::before {
+            content: "📞"; /* Phone icon emoji */
+            margin-right: 8px;
         }
         h1 {
             color: #333;
@@ -89,6 +110,7 @@
             <p><strong>Mobile:</strong> +91 1268315526</p>
             <p><strong>Email:</strong> riyan.khan4712@gmail.com</p>
             <p><strong>Facebook:</strong> MOHD BILAL</p>
+            <a href="tel:+911268315526" class="call-button">Call Me</a>
         </div>
     </div>
     
