@@ -1,4 +1,4 @@
-< Mohd Bilal  html>
+< Mohd Bilal  singarya>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -23,9 +23,9 @@
             display: flex;
             align-items: flex;
             justify-content: flex;
-            margin: 20px 0;
+            margin: auto;
             padding: 20px;
-            background-color: red;
+            background-color: white;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
             max-width: 600px;
@@ -82,8 +82,8 @@
     <p>Welcome to SB COMENY! This is the starting page of your dream company. We're just getting started—stay tuned for more!</p>
     
     <!-- Personal Details Section -->
-    <div class="personal-details">
-src="(https://drive.google.com/uc?export=download&id=1DfCcZW0Bw_TP1P2u-riwYhJmJV0i5iHl" alt="Your Image">)>        <div class="details">
+    <div class="personal-details">[
+(https://github.com/bilal8766/SB-COMENY/blob/main/bilal%20khan%20photos.jpeg)>)>        <div class="details">
             <h2>Mohd Bilal</h2>
             <p><strong>Mobile:</strong> +91 1268315526</p>
             <p><strong>Email:</strong> riyan.khan4712@gmail.com</p>
