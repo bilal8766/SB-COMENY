@@ -80,7 +80,8 @@
         <div class="details">
             <h2>Mohd Bilal</h2>
             <p><strong>Mobile:</strong> 9813399376</p>
-            <p><strong>Email:</strong> riyan.khan4712@gmail.com</p>
+            <p><strong>Email:</strong> riyan.khan4712@gmail.com</p> 
+            <p><strong>Facebook:</strong> MOHD BILAL</p>
         </div>
     </div>
     
