@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+< Mohd Bilal  html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -21,8 +21,8 @@
         }
         .personal-details {
             display: flex;
-            align-items: center;
-            justify-content: center;
+            align-items: flex;
+            justify-content: flex;
             margin: 20px 0;
             padding: 20px;
             background-color: red;
