@@ -1,11 +1,11 @@
-<MOHD BILAL SINGARYA.html>
+<BILAL SINGARYA html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bilal Singarya - Welcome</title>
-    <meta name="description" content="Welcome to SB COMENY, Thanyou Visit My Site Contact Mohd Bilal at 9813490892 or riyan.khan4712@gmail.com for more details.">
-    <meta name="keywords" content="SB COMENY, company, Haryana, Mohd Bilal, business">
+    <title>SB COMENY - Welcome</title>
+    <meta name="description" content="Welcome to SB COMENY, Thanyou Visit My Site. Contact Mohd Bilal at 9813490892 or riyan.khan4712@gmail.com for more details.">
+    <meta name="keywords" content="SB COMENY, company,, Mohd Bilal, ">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -51,26 +51,6 @@
             margin: 5px 0;
             color: #666;
         }
-        .call-button {
-            display: inline-block;
-            background-color: #34C759; /* Apple green color */
-            color: white;
-            padding: 15px 30px;
-            text-decoration: none;
-            border-radius: 50px; /* Rounded like Apple's button */
-            font-weight: bold;
-            font-size: 1.2em;
-            margin-top: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Subtle shadow for depth */
-            transition: background-color 0.3s; /* Smooth hover effect */
-        }
-        .call-button:hover {
-            background-color: #28A745; /* Darker green on hover */
-        }
-        .call-button::before {
-            content: "📞"; /* Phone icon emoji */
-            margin-right: 8px;
-        }
         h1 {
             color: #333;
             font-size: 3em;
@@ -81,8 +61,47 @@
         }
         .welcome-line {
             font-size: 2em;
-            color: #4CAF50;
+            color: white;
+            background-color: red;
+            padding: 10px;
             margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        /* Apple Dialer Style Call Button */
+        .apple-call-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 80px;
+            height: 80px;
+            background-color: #4CD964;
+            border-radius: 50%;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(76, 217, 100, 0.4);
+            transition: all 0.3s ease;
+            margin-top: 15px;
+        }
+        .apple-call-button:hover {
+            background-color: #3CC954;
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(76, 217, 100, 0.5);
+        }
+        .apple-call-button:active {
+            transform: scale(0.95);
+            background-color: #2BB84C;
+        }
+        .apple-call-button span {
+            font-size: 40px;
+            filter: brightness(0) invert(1);
+        }
+        
+        /* Call section styling */
+        .call-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -100,7 +119,7 @@
     <div class="welcome-line">HELLO WELCOM MY COMPANY</div>
     
     <h1>SB COMENY</h1>
-    <p>Welcome to SB COMENY! This is the starting page of your dream company. We're just getting started—stay tuned for more!</p>
+    <p>Welcome to SB COMENY</p>
     
     <!-- Personal Details Section -->
     <div class="personal-details">
@@ -110,7 +129,13 @@
             <p><strong>Mobile:</strong> +91 9813490892</p>
             <p><strong>Email:</strong> riyan.khan4712@gmail.com</p>
             <p><strong>Facebook:</strong> MOHD BILAL</p>
-            <a href="tel:+ 91 9813490892" class="call-button">Call </a>
+            
+            <!-- Apple Dialer Style Call Button with Emoji -->
+            <div class="call-section">
+                <a href="tel:+919813490892" class="apple-call-button" aria-label="Call Mohd Bilal">
+                    <span>📞</span>
+                </a>
+            </div>
         </div>
     </div>
     
