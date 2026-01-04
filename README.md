@@ -32,7 +32,7 @@
             margin-left: auto;
             margin-right: auto;
         }
-        .photo {
+        .photo {https://github.com/bilal8766/SB-COMENY/blob/main/bilal%20khan%20photos.jpeg
             width: 100px;
             height: 100px;
             border-radius: 50%;
