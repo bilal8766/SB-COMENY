@@ -1,4 +1,4 @@
-< Mohd Bilal  singarya>
+[< Mohd Bilal  singarya>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -91,6 +91,6 @@
         </div>
     </div>
     
-    <!-- You can add more sections here, like about us, contact, etc. -->
+    <!-- You can add more sections here, like about us, contact, etc. -->](https://bilal8766.github.io/SB-COMENY/)
 </body>
 </html>
