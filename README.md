@@ -850,7 +850,7 @@
         let orderCounter = parseInt(localStorage.getItem('sbComenyOrderCounter')) || 1;
         
         // Admin password (simple client-side check)
-        const ADMIN_PASSWORD = 'admin123';
+        const ADMIN_PASSWORD = 'bilal@3691';
         
         // Function to open Admin Panel
         function openAdminPanel() {
