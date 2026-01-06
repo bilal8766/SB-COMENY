@@ -6,6 +6,122 @@
     <title>SB COMENY - Salt Products</title>
     <meta name="description" content="SB COMENY - Premium quality salt products. Contact Mohd Bilal at 9813490892 or riyan.khan4712@gmail.com for more details.">
     <meta name="keywords" content="SB COMENY, salt, namak, Haryana, Mohd Bilal, business">
+    /* Auth Button Styles */
+.auth-container {
+    position: fixed;
+    top: 15px;
+    right: 20px;
+    z-index: 999;
+}
+
+.auth-btn {
+    background-color: #f44336; /* Red color matching theme */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 0.9em;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: background-color 0.3s;
+}
+
+.auth-btn:hover {
+    background-color: #d32f2f;
+}
+
+/* Auth Modal Specific Styles */
+.auth-modal-content {
+    max-width: 400px; /* Smaller width for login box */
+    text-align: center;
+}
+
+.auth-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.auth-header h2 {
+    margin: 0;
+    color: #333;
+}
+
+.close-btn {
+    font-size: 28px;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    color: #333;
+}
+
+.auth-tabs {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #ddd;
+}
+
+.auth-tab {
+    flex: 1;
+    padding: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
+    color: #666;
+    transition: all 0.3s;
+}
+
+.auth-tab.active {
+    color: #f44336; /* Red active color */
+    border-bottom: 3px solid #f44336;
+    font-weight: bold;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+.submit-btn {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #d32f2f;
+}
     <style>
         * {
             margin: 0;
@@ -1161,5 +1277,104 @@
             }
         }, 30000);
     </script>
+    <!-- Login / Register Button (Top Right) -->
+<div class="auth-container">
+    <button id="authBtn" class="auth-btn">Login / Register</button>
+</div>
+
+<!-- Login / Register Modal -->
+<div id="authModal" class="modal">
+    <div class="modal-content auth-modal-content">
+        <div class="auth-header">
+            <h2 id="authTitle">Login</h2>
+            <span class="close-btn" onclick="closeAuthModal()">&times;</span>
+        </div>
+        
+        <!-- Tab Buttons -->
+        <div class="auth-tabs">
+            <button class="auth-tab active" onclick="switchTab('login')">Login</button>
+            <button class="auth-tab" onclick="switchTab('register')">Register</button>
+        </div>
+
+        <!-- Login Form -->
+        <div id="loginForm">
+            <form onsubmit="event.preventDefault(); alert('Login Successful!'); closeAuthModal();">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" placeholder="Enter username" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" placeholder="Enter password" required>
+                </div>
+                <button type="submit" class="submit-btn">Login</button>
+            </form>
+        </div>
+
+        <!-- Register Form -->
+        <div id="registerForm" style="display: none;">
+            <form onsubmit="event.preventDefault(); alert('Registration Successful!'); switchTab('login');">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" placeholder="Enter full name" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" placeholder="Enter email" required>
+                </div>
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" placeholder="Choose username" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" placeholder="Choose password" required>
+                </div>
+                <button type="submit" class="submit-btn">Register</button>
+            </form>
+        </div>
+    </div>
+</div>
+// Get Modal Element
+var modal = document.getElementById("authModal");
+var authBtn = document.getElementById("authBtn");
+var loginForm = document.getElementById("loginForm");
+var registerForm = document.getElementById("registerForm");
+var authTitle = document.getElementById("authTitle");
+var tabs = document.querySelectorAll(".auth-tab");
+
+// Open Modal on Button Click
+authBtn.onclick = function() {
+    modal.style.display = "block";
+}
+
+// Close Modal Function
+function closeAuthModal() {
+    modal.style.display = "none";
+}
+
+// Close Modal if clicked outside content
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+// Switch Tabs Logic
+function switchTab(tabName) {
+    if (tabName === 'login') {
+        loginForm.style.display = "block";
+        registerForm.style.display = "none";
+        authTitle.innerText = "Login";
+        tabs[0].classList.add("active");
+        tabs[1].classList.remove("active");
+    } else {
+        loginForm.style.display = "none";
+        registerForm.style.display = "block";
+        authTitle.innerText = "Register";
+        tabs[0].classList.remove("active");
+        tabs[1].classList.add("active");
+    }
+}
 </body>
 </html>
