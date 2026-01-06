@@ -6,7 +6,6 @@
     <title>SB COMENY - Salt Products</title>
     <meta name="description" content="SB COMENY - Premium quality salt products. Contact Mohd Bilal at 9813490892 or riyan.khan4712@gmail.com for more details.">
     <meta name="keywords" content="SB COMENY, salt, namak, Haryana, Mohd Bilal, business">
-    /* Auth Button Styles */
 .auth-container {
     position: fixed;
     top: 15px;
@@ -1362,17 +1361,7 @@ window.onclick = function(event) {
 
 // Switch Tabs Logic
 function switchTab(tabName) {
-    if (tabName === 'login') {
-        loginForm.style.display = "block";
-        registerForm.style.display = "none";
-        authTitle.innerText = "Login";
-        tabs[0].classList.add("active");
-        tabs[1].classList.remove("active");
-    } else {
-        loginForm.style.display = "none";
-        registerForm.style.display = "block";
-        authTitle.innerText = "Register";
-        tabs[0].classList.remove("active");
+    if .classList.remove("active");
         tabs[1].classList.add("active");
     }
 }
