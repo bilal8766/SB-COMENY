@@ -556,7 +556,7 @@
             <div class="stats-container">
                 <div class="stat-card">
                     <div class="stat-number" id="totalOrders">0</div>
-                    <div class="stat-label">कुल ऑर्डर</div>
+                    <div class="stat-label">Total Order </div>
                 </div>
                 <div class="stat-card green">
                     <div class="stat-number" id="completedOrders">0</div>
@@ -564,7 +564,7 @@
                 </div>
                 <div class="stat-card orange">
                     <div class="stat-number" id="pendingOrders">0</div>
-                    <div class="stat-label">पेंडिंग ऑर्डर</div>
+                    <div class="stat-label">Pending Order</div>
                 </div>
                 <div class="stat-card red">
                     <div class="stat-number" id="totalRevenue">₹0</div>
@@ -574,15 +574,15 @@
             
             <!-- Filter Section -->
             <div class="filter-section">
-                <input type="text" id="searchName" placeholder="ग्राहक का नाम खोजें..." onkeyup="filterOrders()">
-                <input type="text" id="searchProduct" placeholder="प्रोडक्ट खोजें..." onkeyup="filterOrders()">
+                <input type="text" id="searchName" placeholder="Search Customer Name..." onkeyup="filterOrders()">
+                <input type="text" id="searchProduct" placeholder="Search Product..." onkeyup="filterOrders()">
                 <input type="date" id="filterDate" onchange="filterOrders()">
                 <select id="filterStatus" onchange="filterOrders()">
-                    <option value="all">सभी स्टेटस</option>
-                    <option value="pending">पेंडिंग</option>
+                    <option value="all">All Status</option>
+                    <option value="pending">Pending</option>
                     <option value="completed">पूर्ण</option>
                 </select>
-                <button onclick="filterOrders()">🔍 खोज</button>
+                <button onclick="filterOrders()">🔍 Search</button>
                 <button onclick="exportOrders()">📥 एक्सपोर्ट</button>
                 <button class="clear-all-btn" onclick="clearAllOrders()">🗑️ सभी हटाएं</button>
             </div>
@@ -591,9 +591,9 @@
             <table class="orders-table">
                 <thead>
                     <tr>
-                        <th>क्रम</th>
-                        <th>तारीख</th>
-                        <th>ग्राहक</th>
+                        <th>Sr No</th>
+                        <th>Date</th>
+                        <th>Customer</th>
                         <th>प्रोडक्ट</th>
                         <th>मात्रा</th>
                         <th>कुल कीमत</th>
@@ -653,7 +653,7 @@
     
     <script>
         // Admin Password (You can change this)
-        const ADMIN_PASSWORD = 'bilal123';
+        const ADMIN_PASSWORD = 'Bilal@3691';
         
         // Initialize orders from localStorage
         let orders = JSON.parse(localStorage.getItem('sbComenyOrders')) || [];
