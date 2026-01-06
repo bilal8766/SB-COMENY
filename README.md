@@ -5,319 +5,478 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SB COMENY - Registration</title>
     <meta name="description" content="Register at SB COMENY - Create your account with email and mobile OTP verification.">
-    <meta name="keywords" content="SB COMENY, registration, signup, account">
-    
-    <!-- Firebase SDK Scripts -->
-    <script type="module" src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
-    <script type="module" src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"></script>
     
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f0f0f0;
+        * {
+            box-sizing: border-box;
             margin: 0;
-            padding: 50px;
+            padding: 0;
         }
+        
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        /* ========== HEADER / NAVBAR ========== */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background: white;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        /* Logo - Left Side */
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
         .logo {
-            width: 200px;
-            height: 200px;
-            float: right;
-            margin-left: 20px;
+            width: 60px;
+            height: 60px;
         }
-        .registration-form {
-            max-width: 400px;
+        
+        .company-name {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .company-name span {
+            color: #ff416c;
+        }
+        
+        /* Navigation - Right Side */
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .nav-btn {
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .nav-btn.home {
+            background: transparent;
+            color: #333;
+            border-color: #ddd;
+        }
+        
+        .nav-btn.home:hover {
+            background: #f0f0f0;
+            border-color: #ccc;
+        }
+        
+        .nav-btn.login {
+            background: transparent;
+            color: #667eea;
+            border-color: #667eea;
+        }
+        
+        .nav-btn.login:hover {
+            background: #667eea;
+            color: white;
+        }
+        
+        .nav-btn.register {
+            background: linear-gradient(90deg, #ff416c, #ff4b2b);
+            color: white;
+            border-color: #ff416c;
+        }
+        
+        .nav-btn.register:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255, 65, 108, 0.4);
+        }
+        
+        /* Mobile Menu Button */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+        
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            border-radius: 3px;
+            transition: 0.3s;
+        }
+        
+        /* ========== MAIN CONTENT ========== */
+        .main-content {
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        .welcome-line {
+            font-size: 1.5em;
+            color: white;
+            background: linear-gradient(90deg, #ff416c, #ff4b2b);
+            padding: 15px 40px;
             margin: 20px auto;
-            padding: 30px;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 50px;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(255, 65, 108, 0.4);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+        
+        h1 {
+            color: white;
+            font-size: 3em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin: 20px 0;
+        }
+        
+        .subtitle {
+            font-size: 1.2em;
+            color: rgba(255,255,255,0.9);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+        
+        /* ========== REGISTRATION FORM ========== */
+        .registration-form {
+            max-width: 450px;
+            margin: 30px auto;
+            padding: 40px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.2);
             text-align: left;
         }
+        
         .registration-form h2 {
             text-align: center;
             color: #333;
+            margin-bottom: 30px;
+            font-size: 1.8em;
+        }
+        
+        .form-group {
             margin-bottom: 20px;
         }
-        .form-group {
-            margin-bottom: 15px;
-        }
+        
         .form-group label {
             display: block;
-            margin-bottom: 5px;
-            color: #333;
-            font-weight: bold;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 600;
         }
+        
         .form-group input {
             width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+            padding: 14px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
             font-size: 1em;
-            box-sizing: border-box;
+            transition: all 0.3s ease;
         }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+        }
+        
+        .form-group input:disabled {
+            background: #f5f5f5;
+            cursor: not-allowed;
+        }
+        
+        .phone-input-group {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .country-code {
+            width: 80px !important;
+            text-align: center;
+        }
+        
         .btn {
             width: 100%;
-            padding: 12px;
-            background-color: #4CAF50;
-            color: white;
+            padding: 14px;
             border: none;
-            border-radius: 5px;
+            border-radius: 10px;
             font-size: 1em;
+            font-weight: 600;
             cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        .btn-otp {
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            color: white;
             margin-top: 10px;
         }
-        .btn:hover {
-            background-color: #45a049;
+        
+        .btn-otp:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
         }
-        .btn-otp {
-            background-color: #2196F3;
+        
+        .btn-verify {
+            background: linear-gradient(90deg, #11998e, #38ef7d);
+            color: white;
         }
-        .btn-otp:hover {
-            background-color: #0b7dda;
+        
+        .btn-verify:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(56, 239, 125, 0.4);
         }
+        
         .btn-logout {
-            background-color: #f44336;
+            background: linear-gradient(90deg, #ff416c, #ff4b2b);
+            color: white;
         }
-        .btn-logout:hover {
-            background-color: #da190b;
+        
+        .message {
+            padding: 12px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+            display: none;
         }
-        h1 {
-            color: #333;
-            font-size: 3em;
+        
+        .message.success {
+            background: #d4edda;
+            color: #155724;
+            display: block;
         }
-        p {
-            font-size: 1.2em;
-            color: #666;
+        
+        .message.error {
+            background: #f8d7da;
+            color: #721c24;
+            display: block;
         }
-        .welcome-line {
+        
+        .otp-section {
+            display: none;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px dashed #e0e0e0;
+        }
+        
+        .otp-section.show {
+            display: block;
+        }
+        
+        #userInfo {
+            display: none;
+            text-align: center;
+        }
+        
+        #userInfo h3 {
+            color: #28a745;
+            margin-bottom: 20px;
+        }
+        
+        .user-avatar {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
             font-size: 2em;
             color: white;
-            background-color: red;
-            padding: 10px;
-            margin: 20px 0;
-            border-radius: 5px;
         }
+        
+        /* ========== PERSONAL DETAILS ========== */
         .personal-details {
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 20px 0;
-            padding: 20px;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            margin: 40px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+            max-width: 500px;
+            gap: 25px;
+            flex-wrap: wrap;
         }
+        
         .photo {
-            width: 100px;
-            height: 100px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
             object-fit: cover;
-            margin-right: 20px;
+            border: 4px solid #667eea;
         }
+        
         .details {
             text-align: left;
         }
+        
         .details h2 {
-            margin: 0 0 10px 0;
             color: #333;
+            margin-bottom: 15px;
         }
+        
         .details p {
-            margin: 5px 0;
+            margin: 8px 0;
             color: #666;
         }
-        .success-message {
-            background-color: #d4edda;
-            color: #155724;
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 15px;
-            text-align: center;
-        }
-        .error-message {
-            background-color: #f8d7da;
-            color: #721c24;
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 15px;
-            text-align: center;
-        }
-        #userInfo {
-            display: none;
-            background-color: #d4edda;
-            padding: 20px;
-            border-radius: 10px;
-            max-width: 400px;
-            margin: 20px auto;
-        }
-        #registrationForm {
-            display: block;
+        
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 10px 15px;
+            }
+            
+            .logo {
+                width: 45px;
+                height: 45px;
+            }
+            
+            .company-name {
+                font-size: 1.3em;
+            }
+            
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                right: 15px;
+                background: white;
+                flex-direction: column;
+                padding: 15px;
+                border-radius: 10px;
+                box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+                gap: 10px;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .menu-toggle {
+                display: flex;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .welcome-line {
+                font-size: 1.1em;
+                padding: 12px 25px;
+            }
+            
+            .registration-form {
+                margin: 20px 15px;
+                padding: 25px 20px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Custom SVG Logo for SB COMENY -->
-    <svg class="logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-        <!-- Background circle for a modern look -->
-        <circle cx="100" cy="100" r="90" fill="#4CAF50" stroke="#333" stroke-width="5"/>
-        <!-- "SB" initials in bold, now red -->
-        <text x="100" y="90" font-family="Arial, sans-serif" font-size="50" font-weight="bold" fill="red" text-anchor="middle">SB</text>
-        <!-- "COMENY" below -->
-        <text x="100" y="120" font-family="Arial, sans-serif" font-size="18" fill="white" text-anchor="middle">COMENY</text>
-    </svg>
-    
-    <div class="welcome-line">HELLO WELCOM MY COMPANY</div>
-    
-    <h1>SB COMENY</h1>
-    <p>Welcome to SB COMENY! This is the starting page of your dream company. We're just getting started—stay tuned for more!</p>
-    
-    <!-- Registration Form Section -->
-    <div class="registration-form">
-        <h2>Create Account</h2>
-        
-        <div id="message"></div>
-        
-        <form id="registrationForm">
-            <div class="form-group">
-                <label for="fullname">Full Name:</label>
-                <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="email">Email ID:</label>
-                <input type="email" id="email" name="email" placeholder="Enter your email" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="mobile">Mobile Number:</label>
-                <input type="tel" id="mobile" name="mobile" placeholder="+91 9876543210" required>
-            </div>
-            
-            <button type="button" class="btn btn-otp" id="sendOtpBtn" onclick="sendOTP()">Send OTP</button>
-            
-            <div class="form-group" style="margin-top: 15px;">
-                <label for="otp">Enter OTP:</label>
-                <input type="text" id="otp" name="otp" placeholder="Enter OTP received on mobile" disabled>
-            </div>
-            
-            <button type="button" class="btn" onclick="verifyOTP()">Create Account</button>
-        </form>
-        
-        <!-- Logged in user info -->
-        <div id="userInfo">
-            <h3>✅ Account Created Successfully!</h3>
-            <p><strong>Name:</strong> <span id="userName"></span></p>
-            <p><strong>Email:</strong> <span id="userEmail"></span></p>
-            <p><strong>Phone:</strong> <span id="userPhone"></span></p>
-            <button class="btn btn-logout" onclick="logout()">Logout</button>
-        </div>
-    </div>
-    
-    <!-- Personal Details Section -->
-    <div class="personal-details">
-        <img src="https://raw.githubusercontent.com/bilal8766/SB-COMENY/main/bilal%20khan%20photos.jpeg" alt="Mohd Bilal Profile Picture" class="photo">
-        <div class="details">
-            <h2>Mohd Bilal</h2>
-            <p><strong>Mobile:</strong> +91 1268315526</p>
-            <p><strong>Email:</strong> riyan.khan4712@gmail.com</p>
-            <p><strong>Facebook:</strong> MOHD BILAL</p>
-        </div>
-    </div>
-    
-    <script type="module">
-        // Firebase Configuration - अपना Config यहाँ पेस्ट करें
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-        import { getAuth, signInWithPhoneNumber, RecaptchaVerifier, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
-        // ⚠️ अपना Firebase Config यहाँ पेस्ट करें:
-        const firebaseConfig = {
-            apiKey: "YOUR_API_KEY_HERE",
-            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-            projectId: "YOUR_PROJECT_ID",
-            storageBucket: "YOUR_PROJECT_ID.appspot.com",
-            messagingSenderId: "YOUR_SENDER_ID",
-            appId: "YOUR_APP_ID"
-        };
+    <!-- ========== NAVBAR ========== -->
+    <nav class="navbar">
+        <!-- Logo - LEFT SIDE -->
+        <div class="logo-section">
+            <svg class="logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#667eea"/>
+                        <stop offset="100%" style="stop-color:#764ba2"/>
+                    </linearGradient>
+                </defs>
+                <circle cx="100" cy="100" r="90" fill="url(#logoGradient)" stroke="white" stroke-width="5"/>
+                <text x="100" y="90" font-family="Arial" font-size="50" font-weight="bold" fill="#ff416c" text-anchor="middle">SB</text>
+                <text x="100" y="125" font-family="Arial" font-size="20" fill="white" text-anchor="middle">COMENY</text>
+            </svg>
+            <div class="company-name"><span>SB</span> COMENY</div>
+        </div>
+        
+        <!-- Navigation Buttons - RIGHT SIDE -->
+        <div class="nav-links" id="navLinks">
+            <a href="#" class="nav-btn home">🏠 Home</a>
+            <a href="#" class="nav-btn login">🔑 Login</a>
+            <a href="#" class="nav-btn register">📝 Register</a>
+        </div>
+        
+        <!-- Mobile Menu Toggle -->
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
 
-        // Firebase Initialize करें
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
+    <!-- ========== MAIN CONTENT ========== -->
+    <div class="main-content">
+        <div class="welcome-line">🎉 HELLO! WELCOME TO MY COMPANY 🎉</div>
         
-        // OTP Send करने का फंक्शन
-        window.sendOTP = async function() {
-            const mobile = document.getElementById('mobile').value;
-            const messageDiv = document.getElementById('message');
+        <h1>SB COMENY</h1>
+        <p class="subtitle">Welcome to SB COMENY! This is the starting page of your dream company. We're just getting started—stay tuned for more amazing things!</p>
+        
+        <!-- Registration Form -->
+        <div class="registration-form">
+            <h2>📝 Create Account</h2>
             
-            if(mobile.length < 10) {
-                messageDiv.innerHTML = '<div class="error-message">कृपया सही मोबाइल नंबर दर्ज करें!</div>';
-                return;
-            }
+            <div id="message" class="message"></div>
             
-            try {
-                // RecaptchaVerifier सेटअप
-                window.recaptchaVerifier = new RecaptchaVerifier(auth, 'sendOtpBtn', {
-                    'size': 'invisible',
-                    'callback': (response) => {
-                        // reCAPTCHA solved
-                    }
-                });
+            <div id="registrationForm">
+                <div class="form-group">
+                    <label>👤 Full Name</label>
+                    <input type="text" id="fullname" placeholder="Enter your full name" required>
+                </div>
                 
-                const phoneNumber = mobile;
-                const confirmationResult = await signInWithPhoneNumber(auth, phoneNumber, window.recaptchaVerifier);
+                <div class="form-group">
+                    <label>📧 Email Address</label>
+                    <input type="email" id="email" placeholder="example@email.com" required>
+                </div>
                 
-                window.confirmationResult = confirmationResult;
+                <div class="form-group">
+                    <label>📱 Mobile Number</label>
+                    <div class="phone-input-group">
+                        <input type="text" id="countryCode" class="country-code" value="+91">
+                        <input type="tel" id="mobile" placeholder="9876543210" maxlength="10" required>
+                    </div>
+                </div>
                 
-                document.getElementById('otp').disabled = false;
-                messageDiv.innerHTML = '<div class="success-message">OTP भेजा गया! कृपया अपने मोबाइल पर आए OTP दर्ज करें।</div>';
+                <div id="recaptcha-container"></div>
                 
-            } catch (error) {
-                console.error("OTP Error:", error);
-                messageDiv.innerHTML = '<div class="error-message">Error: ' + error.message + '</div>';
-            }
-        }
-        
-        // OTP Verify करने का फंक्शन
-        window.verifyOTP = async function() {
-            const otp = document.getElementById('otp').value;
-            const messageDiv = document.getElementById('message');
-            
-            try {
-                const result = await window.confirmationResult.confirm(otp);
-                const user = result.user;
+                <button class="btn btn-otp" id="sendOtpBtn" onclick="sendOTP()">📤 Send OTP</button>
                 
-                // User info दिखाएँ
-                document.getElementById('registrationForm').style.display = 'none';
-                document.getElementById('userInfo').style.display = 'block';
-                document.getElementById('userName').textContent = document.getElementById('fullname').value;
-                document.getElementById('userEmail').textContent = document.getElementById('email').value;
-                document.getElementById('userPhone').textContent = document.getElementById('mobile').value;
-                
-            } catch (error) {
-                console.error("Verification Error:", error);
-                messageDiv.innerHTML = '<div class="error-message">गलत OTP! कृपया सही OTP दर्ज करें।</div>';
-            }
-        }
-        
-        // Logout फंक्शन
-        window.logout = async function() {
-            await auth.signOut();
-            document.getElementById('registrationForm').style.display = 'block';
-            document.getElementById('userInfo').style.display = 'none';
-            document.getElementById('otp').disabled = true;
-            document.getElementById('otp').value = '';
-            document.getElementById('message').innerHTML = '';
-        }
-        
-        // Check if user is already logged in
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                document.getElementById('registrationForm').style.display = 'none';
-                document.getElementById('userInfo').style.display = 'block';
-            }
-        });
-    </script>
-</body>
-</html>
+                <div class="otp-section" id="otpSection">
+                    <div class="form-group">
+                        <label>🔐 Enter OTP</label>
+                        <input type="text" id="otp" placeholder="Enter 6-digit OTP" maxlength="6">
+                    </div>
+                    <button class
