@@ -1,4 +1,4 @@
-<!MOHD BILAL html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -25,7 +25,32 @@
             width: 150px;
             height: 150px;
             float: left;
-            margin-right: 20px;
+        }
+        
+        @media (max-width: 600px) {
+            .logo {
+                width: 100px;
+                height: 100px;
+                float: none;
+                margin: 0 auto 15px;
+                display: block;
+            }
+        }
+        
+        .welcome-line {
+            font-size: 1.5em;
+            color: white;
+            background-color: red;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            clear: both;
+        }
+        
+        h1 {
+            color: #333;
+            font-size: 2em;
+            margin: 10px 0;
         }
         
         .personal-details {
@@ -66,25 +91,20 @@
             font-size: 0.9em;
         }
         
-        h1 {
-            color: #333;
-            font-size: 2em;
-            margin: 10px 0;
-        }
-        
-        p {
-            font-size: 1em;
-            color: #666;
-        }
-        
-        .welcome-line {
-            font-size: 1.5em;
-            color: white;
-            background-color: red;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 5px;
-            clear: both;
+        @media (max-width: 600px) {
+            .personal-details {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .photo {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            
+            .details {
+                text-align: center;
+            }
         }
         
         .product-section {
@@ -96,6 +116,12 @@
             max-width: 1000px;
             margin-left: auto;
             margin-right: auto;
+        }
+        
+        .section-title {
+            font-size: 1.5em;
+            color: #333;
+            margin: 20px 0;
         }
         
         .product-grid {
@@ -155,13 +181,7 @@
             background-color: #45a049;
         }
         
-        .section-title {
-            font-size: 1.5em;
-            color: #333;
-            margin: 20px 0;
-        }
-        
-        /* Admin Panel Styles */
+        /* Admin Button */
         .admin-btn {
             background-color: #333;
             color: white;
@@ -173,6 +193,7 @@
             margin-top: 10px;
         }
         
+        /* Admin Panel Styles */
         .admin-panel {
             display: none;
             position: fixed;
@@ -244,6 +265,10 @@
         
         .stat-card.orange {
             background: linear-gradient(135deg, #ff9800 0%, #ef6c00 100%);
+        }
+        
+        .stat-card.purple {
+            background: linear-gradient(135deg, #9c27b0 0%, #6a1b9a 100%);
         }
         
         .stat-number {
@@ -321,6 +346,28 @@
             color: #155724;
         }
         
+        .payment-badge {
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            font-weight: bold;
+        }
+        
+        .payment-cod {
+            background-color: #e3f2fd;
+            color: #1565c0;
+        }
+        
+        .payment-phonepe {
+            background-color: #f3e5f5;
+            color: #7b1fa2;
+        }
+        
+        .payment-googlepay {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+        
         .action-btn {
             padding: 5px 10px;
             border: none;
@@ -373,7 +420,7 @@
             padding: 25px;
             border-radius: 10px;
             width: 95%;
-            max-width: 450px;
+            max-width: 500px;
             box-shadow: 0 0 20px rgba(0,0,0,0.2);
         }
         
@@ -402,7 +449,7 @@
         }
         
         .form-group {
-            margin-bottom: 12px;
+            margin-bottom: 15px;
             text-align: left;
         }
         
@@ -428,6 +475,57 @@
             height: 70px;
         }
         
+        /* Payment Options Styles */
+        .payment-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .payment-option {
+            flex: 1;
+            min-width: 120px;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s;
+            background-color: white;
+        }
+        
+        .payment-option:hover {
+            border-color: #4CAF50;
+            background-color: #f5f5f5;
+        }
+        
+        .payment-option.selected {
+            border-color: #4CAF50;
+            background-color: #e8f5e9;
+        }
+        
+        .payment-option input {
+            display: none;
+        }
+        
+        .payment-icon {
+            font-size: 1.5em;
+            margin-bottom: 5px;
+        }
+        
+        .payment-name {
+            font-size: 0.9em;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .payment-details {
+            font-size: 0.75em;
+            color: #666;
+            margin-top: 3px;
+        }
+        
         .submit-btn {
             background-color: red;
             color: white;
@@ -438,6 +536,7 @@
             cursor: pointer;
             width: 100%;
             transition: background-color 0.3s;
+            margin-top: 10px;
         }
         
         .submit-btn:hover {
@@ -449,36 +548,53 @@
             pointer-events: none;
         }
         
-        /* Responsive */
+        /* Order Summary */
+        .order-summary {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .order-summary h4 {
+            margin: 0 0 10px 0;
+            color: #333;
+        }
+        
+        .order-summary p {
+            margin: 5px 0;
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .order-summary .total {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #4CAF50;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #ddd;
+        }
+        
         @media (max-width: 600px) {
-            .logo {
-                width: 100px;
-                height: 100px;
-                float: none;
-                margin: 0 auto 15px;
-                display: block;
-            }
-            
-            .personal-details {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .photo {
-                margin-right: 0;
-                margin-bottom: 15px;
-            }
-            
-            .details {
-                text-align: center;
-            }
-            
             .orders-table {
-                font-size: 0.8em;
+                font-size: 0.75em;
             }
             
             .orders-table th, .orders-table td {
-                padding: 8px;
+                padding: 6px;
+            }
+            
+            .filter-section {
+                flex-direction: column;
+            }
+            
+            .filter-section input, .filter-section select {
+                width: 100%;
+            }
+            
+            .payment-option {
+                min-width: 100%;
             }
         }
     </style>
@@ -491,7 +607,7 @@
         <text x="100" y="120" font-family="Arial, sans-serif" font-size="18" fill="white" text-anchor="middle">COMENY</text>
     </svg>
     
-    <div class="welcome-line">HELLO WELCOM MY COMPANY</div>
+    <div class="welcome-line">HELLO WELCOME MY COMPANY</div>
     
     <h1>SB COMENY</h1>
     <p>Premium quality salt products for your daily needs.</p>
@@ -556,51 +672,61 @@
             <div class="stats-container">
                 <div class="stat-card">
                     <div class="stat-number" id="totalOrders">0</div>
-                    <div class="stat-label">Total Order </div>
+                    <div class="stat-label">Total Orders</div>
                 </div>
                 <div class="stat-card green">
                     <div class="stat-number" id="completedOrders">0</div>
-                    <div class="stat-label">पूर्ण ऑर्डर</div>
+                    <div class="stat-label">Completed</div>
                 </div>
                 <div class="stat-card orange">
                     <div class="stat-number" id="pendingOrders">0</div>
-                    <div class="stat-label">Pending Order</div>
+                    <div class="stat-label">Pending</div>
+                </div>
+                <div class="stat-card purple">
+                    <div class="stat-number" id="codOrders">0</div>
+                    <div class="stat-label">Cash on Delivery</div>
                 </div>
                 <div class="stat-card red">
                     <div class="stat-number" id="totalRevenue">₹0</div>
-                    <div class="stat-label">कुल कमाई</div>
+                    <div class="stat-label">Total Revenue</div>
                 </div>
             </div>
             
             <!-- Filter Section -->
             <div class="filter-section">
-                <input type="text" id="searchName" placeholder="Search Customer Name..." onkeyup="filterOrders()">
-                <input type="text" id="searchProduct" placeholder="Search Product..." onkeyup="filterOrders()">
+                <input type="text" id="searchName" placeholder="Search customer name..." onkeyup="filterOrders()">
+                <input type="text" id="searchProduct" placeholder="Search product..." onkeyup="filterOrders()">
                 <input type="date" id="filterDate" onchange="filterOrders()">
                 <select id="filterStatus" onchange="filterOrders()">
                     <option value="all">All Status</option>
                     <option value="pending">Pending</option>
-                    <option value="completed">पूर्ण</option>
+                    <option value="completed">Completed</option>
+                </select>
+                <select id="filterPayment" onchange="filterOrders()">
+                    <option value="all">All Payment</option>
+                    <option value="COD">Cash on Delivery</option>
+                    <option value="PhonePe">PhonePe</option>
+                    <option value="GooglePay">Google Pay</option>
                 </select>
                 <button onclick="filterOrders()">🔍 Search</button>
-                <button onclick="exportOrders()">📥 एक्सपोर्ट</button>
-                <button class="clear-all-btn" onclick="clearAllOrders()">🗑️ सभी हटाएं</button>
+                <button onclick="exportOrders()">📥 Export</button>
+                <button class="clear-all-btn" onclick="clearAllOrders()">🗑️ Clear All</button>
             </div>
             
             <!-- Orders Table -->
             <table class="orders-table">
                 <thead>
                     <tr>
-                        <th>Sr No</th>
+                        <th>No</th>
                         <th>Date</th>
                         <th>Customer</th>
-                        <th>प्रोडक्ट</th>
-                        <th>मात्रा</th>
-                        <th>कुल कीमत</th>
-                        <th>फोन</th>
-                        <th>पता</th>
-                        <th>स्टेटस</th>
-                        <th>एक्शन</th>
+                        <th>Product</th>
+                        <th>Qty</th>
+                        <th>Price</th>
+                        <th>Payment</th>
+                        <th>Phone</th>
+                        <th>Status</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody id="ordersTableBody">
@@ -617,6 +743,16 @@
                 <h2>Place Your Order</h2>
                 <span class="close-btn" onclick="closeOrderModal()">&times;</span>
             </div>
+            
+            <!-- Order Summary -->
+            <div class="order-summary">
+                <h4>📦 Order Summary</h4>
+                <p><strong>Product:</strong> <span id="summaryProduct">-</span></p>
+                <p><strong>Price per packet:</strong> ₹<span id="summaryPrice">0</span></p>
+                <p><strong>Quantity:</strong> <span id="summaryQuantity">1</span></p>
+                <p class="total"><strong>Total: ₹<span id="summaryTotal">0</span></strong></p>
+            </div>
+            
             <form id="orderForm" onsubmit="submitOrder(event)">
                 <input type="hidden" id="productName">
                 <input type="hidden" id="productPrice">
@@ -638,310 +774,390 @@
                 
                 <div class="form-group">
                     <label for="quantity">Quantity (Packets):</label>
-                    <input type="number" id="quantity" min="1" value="1" required>
+                    <input type="number" id="quantity" min="1" value="1" required onchange="updateOrderSummary()">
                 </div>
                 
+                <!-- Payment Options -->
                 <div class="form-group">
-                    <label for="orderNotes">Additional Notes (Optional):</label>
-                    <textarea id="orderNotes" placeholder="Any special instructions..."></textarea>
+                    <label>Payment Mode:</label>
+                    <div class="payment-options">
+                        <div class="payment-option selected" onclick="selectPayment('COD', this)">
+                            <input type="radio" name="paymentMode" value="COD" id="paymentCOD" checked>
+                            <div class="payment-icon">💵</div>
+                            <div class="payment-name">Cash on Delivery</div>
+                            <div class="payment-details">Pay at delivery</div>
+                        </div>
+                        
+                        <div class="payment-option" onclick="selectPayment('PhonePe', this)">
+                            <input type="radio" name="paymentMode" value="PhonePe" id="paymentPhonePe">
+                            <div class="payment-icon">📱</div>
+                            <div class="payment-name">PhonePe</div>
+                            <div class="payment-details">Pay via PhonePe</div>
+                        </div>
+                        
+                        <div class="payment-option" onclick="selectPayment('GooglePay', this)">
+                            <input type="radio" name="paymentMode" value="GooglePay" id="paymentGooglePay">
+                            <div class="payment-icon">💳</div>
+                            <div class="payment-name">Google Pay</div>
+                            <div class="payment-details">Pay via GPay</div>
+                        </div>
+                    </div>
                 </div>
                 
-                <button type="submit" class="submit-btn" id="submitBtn">Confirm Order</button>
+                <!-- UPI Details Display (shown when online payment selected) -->
+                <div id="upiDetails" style="display: none; background: #f0f0f0; padding: 10px; border-radius: 5px; margin-bottom: 15px; text-align: left;">
+                    <p style="margin: 5px 0; font-size: 0.9em;"><strong>
+                                        <p style="margin: 5px 0; font-size: 0.9em;"><strong>📱 UPI Payment Details:</strong></p>
+                    <p style="margin: 5px 0; font-size: 0.85em;">UPI ID: <strong>riyan.khan4712@okhdfcbank</strong></p>
+                    <p style="margin: 5px 0; font-size: 0.85em;">PhonePe/GooglePay: <strong>9813490892</strong></p>
+                    <p style="margin: 5px 0; font-size: 0.85em; color: #666;">💡 After payment, please send screenshot on WhatsApp: <strong>+91 9813490892</strong></p>
+                </div>
+                
+                <button type="submit" class="submit-btn">✅ Confirm Order</button>
             </form>
         </div>
     </div>
     
+    <!-- Success Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal-content" style="text-align: center; max-width: 400px;">
+            <div style="font-size: 50px; margin-bottom: 15px;">✅</div>
+            <h2 style="color: #4CAF50;">Order Placed Successfully!</h2>
+            <p style="color: #666; margin: 15px 0;">Thank you for your order. We will contact you shortly.</p>
+            <p style="font-size: 0.9em; color: #333;"><strong>Order ID:</strong> <span id="successOrderId">-</span></p>
+            <button class="submit-btn" onclick="closeSuccessModal()" style="margin-top: 20px;">Close</button>
+        </div>
+    </div>
+    
+    <!-- Order Details Modal for Admin -->
+    <div id="orderDetailsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>📋 Order Details</h2>
+                <span class="close-btn" onclick="closeOrderDetailsModal()">&times;</span>
+            </div>
+            <div id="orderDetailsContent">
+                <!-- Order details will be populated here -->
+            </div>
+        </div>
+    </div>
+    
     <script>
-        // Admin Password (You can change this)
-        const ADMIN_PASSWORD = 'Bilal@3691';
-        
-        // Initialize orders from localStorage
+        // Initialize orders from localStorage or empty array
         let orders = JSON.parse(localStorage.getItem('sbComenyOrders')) || [];
         
-        // Open Admin Panel
+        // Order counter for unique IDs
+        let orderCounter = parseInt(localStorage.getItem('sbComenyOrderCounter')) || 1;
+        
+        // Admin password (simple client-side check)
+        const ADMIN_PASSWORD = 'admin123';
+        
+        // Function to open Admin Panel
         function openAdminPanel() {
-            const password = prompt('🔐 Enter password to open Admin Panel:');
-            
+            const password = prompt('Enter Admin Password:');
             if (password === ADMIN_PASSWORD) {
                 document.getElementById('adminPanel').style.display = 'block';
-                loadOrders();
+                updateAdminStats();
+                renderOrdersTable();
             } else if (password !== null) {
-                alert('❌ Wrong password!');
+                alert('Incorrect Password!');
             }
         }
         
-        // Close Admin Panel
+        // Function to close Admin Panel
         function closeAdminPanel() {
             document.getElementById('adminPanel').style.display = 'none';
         }
         
-        // Load Orders to Table
-        function loadOrders() {
-            const tableBody = document.getElementById('ordersTableBody');
-            tableBody.innerHTML = '';
-            
-            if (orders.length === 0) {
-                tableBody.innerHTML = '<tr><td colspan="10" style="text-align:center; padding:20px;">No orders found yet!</td></tr>';
-                updateStats();
-                return;
-            }
-            
-            // Sort by date (newest first)
-            orders.sort((a, b) => new Date(b.date) - new Date(a.date));
-            
-            orders.forEach((order, index) => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${index + 1}</td>
-                    <td>${formatDate(order.date)}</td>
-                    <td>${order.customerName}</td>
-                    <td>${order.product}</td>
-                    <td>${order.quantity}</td>
-                    <td>₹${order.totalPrice}</td>
-                    <td>${order.phone}</td>
-                    <td>${order.address.substring(0, 30)}...</td>
-                    <td><span class="status-badge ${order.status === 'completed' ? 'status-completed' : 'status-pending'}">${order.status === 'completed' ? 'Completed' : 'Pending'}</span></td>
-                    <td>
-                        <button class="action-btn btn-view" onclick="viewOrder(${index})">👁️</button>
-                        ${order.status === 'pending' ? `<button class="action-btn btn-complete" onclick="markComplete(${index})">✓</button>` : ''}
-                        <button class="action-btn btn-delete" onclick="deleteOrder(${index})">🗑️</button>
-                    </td>
-                `;
-                tableBody.appendChild(row);
-            });
-            
-            updateStats();
+        // Function to open Order Modal
+        function openOrderModal(productName, price) {
+            document.getElementById('orderModal').style.display = 'block';
+            document.getElementById('productName').value = productName;
+            document.getElementById('productPrice').value = price;
+            document.getElementById('summaryProduct').textContent = productName;
+            document.getElementById('summaryPrice').textContent = price;
+            document.getElementById('summaryQuantity').textContent = '1';
+            document.getElementById('summaryTotal').textContent = price;
+            document.getElementById('quantity').value = 1;
         }
         
-        // Update Statistics
-        function updateStats() {
+        // Function to close Order Modal
+        function closeOrderModal() {
+            document.getElementById('orderModal').style.display = 'none';
+            document.getElementById('orderForm').reset();
+            document.getElementById('upiDetails').style.display = 'none';
+            // Reset payment options
+            document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('selected'));
+            document.querySelector('.payment-option').classList.add('selected');
+        }
+        
+        // Function to close Success Modal
+        function closeSuccessModal() {
+            document.getElementById('successModal').style.display = 'none';
+        }
+        
+        // Function to close Order Details Modal
+        function closeOrderDetailsModal() {
+            document.getElementById('orderDetailsModal').style.display = 'none';
+        }
+        
+        // Function to select payment option
+        function selectPayment(method, element) {
+            // Remove selected class from all options
+            document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('selected'));
+            // Add selected class to clicked option
+            element.classList.add('selected');
+            // Check the corresponding radio button
+            document.querySelector(`input[value="${method}"]`).checked = true;
+            
+            // Show/hide UPI details
+            const upiDetails = document.getElementById('upiDetails');
+            if (method === 'PhonePe' || method === 'GooglePay') {
+                upiDetails.style.display = 'block';
+            } else {
+                upiDetails.style.display = 'none';
+            }
+        }
+        
+        // Function to update order summary
+        function updateOrderSummary() {
+            const quantity = document.getElementById('quantity').value;
+            const price = document.getElementById('productPrice').value;
+            const total = quantity * price;
+            
+            document.getElementById('summaryQuantity').textContent = quantity;
+            document.getElementById('summaryTotal').textContent = total;
+        }
+        
+        // Function to submit order
+        function submitOrder(event) {
+            event.preventDefault();
+            
+            const orderId = 'ORD-' + orderCounter++;
+            localStorage.setItem('sbComenyOrderCounter', orderCounter);
+            
+            const order = {
+                id: orderId,
+                date: new Date().toLocaleDateString('en-GB'),
+                time: new Date().toLocaleTimeString('en-GB'),
+                customerName: document.getElementById('customerName').value,
+                customerPhone: document.getElementById('customerPhone').value,
+                customerAddress: document.getElementById('customerAddress').value,
+                product: document.getElementById('productName').value,
+                price: document.getElementById('productPrice').value,
+                quantity: document.getElementById('quantity').value,
+                total: document.getElementById('summaryTotal').textContent,
+                paymentMode: document.querySelector('input[name="paymentMode"]:checked').value,
+                status: 'pending'
+            };
+            
+            orders.push(order);
+            localStorage.setItem('sbComenyOrders', JSON.stringify(orders));
+            
+            // Close order modal and show success
+            closeOrderModal();
+            document.getElementById('successOrderId').textContent = orderId;
+            document.getElementById('successModal').style.display = 'block';
+        }
+        
+        // Function to update admin stats
+        function updateAdminStats() {
             const totalOrders = orders.length;
             const completedOrders = orders.filter(o => o.status === 'completed').length;
             const pendingOrders = orders.filter(o => o.status === 'pending').length;
+            const codOrders = orders.filter(o => o.paymentMode === 'COD').length;
             const totalRevenue = orders
                 .filter(o => o.status === 'completed')
-                .reduce((sum, o) => sum + parseInt(o.totalPrice), 0);
+                .reduce((sum, o) => sum + parseInt(o.total), 0);
             
             document.getElementById('totalOrders').textContent = totalOrders;
             document.getElementById('completedOrders').textContent = completedOrders;
             document.getElementById('pendingOrders').textContent = pendingOrders;
+            document.getElementById('codOrders').textContent = codOrders;
             document.getElementById('totalRevenue').textContent = '₹' + totalRevenue;
         }
         
-        // Filter Orders
-        function filterOrders() {
+        // Function to render orders table
+        function renderOrdersTable() {
+            const tbody = document.getElementById('ordersTableBody');
+            tbody.innerHTML = '';
+            
+            const filteredOrders = getFilteredOrders();
+            
+            filteredOrders.forEach((order, index) => {
+                const tr = document.createElement('tr');
+                
+                tr.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${order.date}<br><small style="color: #666;">${order.time}</small></td>
+                    <td>${order.customerName}</td>
+                    <td>${order.product}</td>
+                    <td>${order.quantity}</td>
+                    <td>₹${order.total}</td>
+                    <td><span class="payment-badge payment-${order.paymentMode.toLowerCase()}">${order.paymentMode}</span></td>
+                    <td>${order.customerPhone}</td>
+                    <td><span class="status-badge status-${order.status}">${order.status.charAt(0).toUpperCase() + order.status.slice(1)}</span></td>
+                    <td>
+                        <button class="action-btn btn-view" onclick="viewOrderDetails('${order.id}')">View</button>
+                        ${order.status === 'pending' ? `<button class="action-btn btn-complete" onclick="completeOrder('${order.id}')">✓</button>` : ''}
+                        <button class="action-btn btn-delete" onclick="deleteOrder('${order.id}')">✗</button>
+                    </td>
+                `;
+                
+                tbody.appendChild(tr);
+            });
+            
+            if (filteredOrders.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="10" style="text-align: center; padding: 30px; color: #666;">No orders found</td></tr>';
+            }
+        }
+        
+        // Function to get filtered orders
+        function getFilteredOrders() {
             const searchName = document.getElementById('searchName').value.toLowerCase();
             const searchProduct = document.getElementById('searchProduct').value.toLowerCase();
             const filterDate = document.getElementById('filterDate').value;
             const filterStatus = document.getElementById('filterStatus').value;
+            const filterPayment = document.getElementById('filterPayment').value;
             
-            const filteredOrders = orders.filter(order => {
-                const matchesName = order.customerName.toLowerCase().includes(searchName);
-                const matchesProduct = order.product.toLowerCase().includes(searchProduct);
-                const matchesDate = !filterDate || order.date.startsWith(filterDate);
-                const matchesStatus = filterStatus === 'all' || order.status === filterStatus;
+            return orders.filter(order => {
+                const matchName = order.customerName.toLowerCase().includes(searchName);
+                const matchProduct = order.product.toLowerCase().includes(searchProduct);
+                const matchDate = !filterDate || order.date === filterDate.split('/').reverse().join('/');
+                const matchStatus = filterStatus === 'all' || order.status === filterStatus;
+                const matchPayment = filterPayment === 'all' || order.paymentMode === filterPayment;
                 
-                return matchesName && matchesProduct && matchesDate && matchesStatus;
-            });
-            
-            const tableBody = document.getElementById('ordersTableBody');
-            tableBody.innerHTML = '';
-            
-            if (filteredOrders.length === 0) {
-                tableBody.innerHTML = '<tr><td colspan="10" style="text-align:center; padding:20px;">No orders found!</td></tr>';
-                return;
-            }
-            
-            filteredOrders.forEach((order, index) => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${index + 1}</td>
-                    <td>${formatDate(order.date)}</td>
-                    <td>${order.customerName}</td>
-                    <td>${order.product}</td>
-                    <td>${order.quantity}</td>
-                    <td>₹${order.totalPrice}</td>
-                    <td>${order.phone}</td>
-                    <td>${order.address.substring(0, 30)}...</td>
-                    <td><span class="status-badge ${order.status === 'completed' ? 'status-completed' : 'status-pending'}">${order.status === 'completed' ? 'Completed' : 'Pending'}</span></td>
-                    <td>
-                        <button class="action-btn btn-view" onclick="viewOrder(${orders.indexOf(order)})">👁
-                                                </button>
-                        ${order.status === 'pending' ? `<button class="action-btn btn-complete" onclick="markComplete(${orders.indexOf(order)})">✓</button>` : ''}
-                        <button class="action-btn btn-delete" onclick="deleteOrder(${orders.indexOf(order)})">🗑️</button>
-                    </td>
-                `;
-                tableBody.appendChild(row);
+                return matchName && matchProduct && matchDate && matchStatus && matchPayment;
             });
         }
         
-        // Export Orders to CSV
+        // Function to filter orders
+        function filterOrders() {
+            updateAdminStats();
+            renderOrdersTable();
+        }
+        
+        // Function to view order details
+        function viewOrderDetails(orderId) {
+            const order = orders.find(o => o.id === orderId);
+            if (!order) return;
+            
+            const content = document.getElementById('orderDetailsContent');
+            content.innerHTML = `
+                <div class="form-group">
+                    <label><strong>Order ID:</strong></label>
+                    <p>${order.id}</p>
+                </div>
+                <div class="form-group">
+                    <label><strong>Date & Time:</strong></label>
+                    <p>${order.date} at ${order.time}</p>
+                </div>
+                <div class="form-group">
+                    <label><strong>Customer Name:</strong></label>
+                    <p>${order.customerName}</p>
+                </div>
+                <div class="form-group">
+                    <label><strong>Phone Number:</strong></label>
+                    <p>${order.customerPhone}</p>
+                </div>
+                <div class="form-group">
+                    <label><strong>Delivery Address:</strong></label>
+                    <p>${order.customerAddress}</p>
+                </div>
+                <div class="form-group">
+                    <label><strong>Product:</strong></label>
+                    <p>${order.product}</p>
+                </div>
+                <div class="form-group">
+                    <label><strong>Quantity:</strong></label>
+                    <p>${order.quantity} packet(s)</p>
+                </div>
+                <div class="form-group">
+                    <label><strong>Total Amount:</strong></label>
+                    <p style="font-size: 1.2em; color: #4CAF50;">₹${order.total}</p>
+                </div>
+                <div class="form-group">
+                    <label><strong>Payment Mode:</strong></label>
+                    <p><span class="payment-badge payment-${order.paymentMode.toLowerCase()}">${order.paymentMode}</span></p>
+                </div>
+                <div class="form-group">
+                    <label><strong>Order Status:</strong></label>
+                    <p><span class="status-badge status-${order.status}">${order.status.charAt(0).toUpperCase() + order.status.slice(1)}</span></p>
+                </div>
+            `;
+            
+            document.getElementById('orderDetailsModal').style.display = 'block';
+        }
+        
+        // Function to complete order
+        function completeOrder(orderId) {
+            const order = orders.find(o => o.id === orderId);
+            if (order) {
+                order.status = 'completed';
+                localStorage.setItem('sbComenyOrders', JSON.stringify(orders));
+                updateAdminStats();
+                renderOrdersTable();
+            }
+        }
+        
+        // Function to delete order
+        function deleteOrder(orderId) {
+            if (confirm('Are you sure you want to delete this order?')) {
+                orders = orders.filter(o => o.id !== orderId);
+                localStorage.setItem('sbComenyOrders', JSON.stringify(orders));
+                updateAdminStats();
+                renderOrdersTable();
+            }
+        }
+        
+        // Function to clear all orders
+        function clearAllOrders() {
+            if (confirm('Are you sure you want to delete ALL orders? This action cannot be undone!')) {
+                orders = [];
+                localStorage.setItem('sbComenyOrders', JSON.stringify(orders));
+                orderCounter = 1;
+                localStorage.setItem('sbComenyOrderCounter', 1);
+                updateAdminStats();
+                renderOrdersTable();
+            }
+        }
+        
+        // Function to export orders to CSV
         function exportOrders() {
-            if (orders.length === 0) {
+            const filteredOrders = getFilteredOrders();
+            
+            if (filteredOrders.length === 0) {
                 alert('No orders to export!');
                 return;
             }
             
-            let csvContent = 'data:text/csv;charset=utf-8,';
-            csvContent += 'Order No,Date,Customer Name,Product,Quantity,Total Price,Phone,Address,Status,Notes\n';
+            let csv = 'Order ID,Date,Time,Customer Name,Phone,Address,Product,Quantity,Total,Payment Mode,Status\n';
             
-            orders.forEach((order, index) => {
-                const row = [
-                    index + 1,
-                    formatDate(order.date),
-                    order.customerName,
-                    order.product,
-                    order.quantity,
-                    order.totalPrice,
-                    order.phone,
-                    order.address,
-                    order.status,
-                    order.notes || ''
-                ].join(',');
-                csvContent += row + '\n';
+            filteredOrders.forEach(order => {
+                csv += `"${order.id}","${order.date}","${order.time}","${order.customerName}","${order.customerPhone}","${order.customerAddress.replace(/"/g, '""')}","${order.product}","${order.quantity}","${order.total}","${order.paymentMode}","${order.status}"\n`;
             });
             
-            const encodedUri = encodeURI(csvContent);
-            const link = document.createElement('a');
-            link.setAttribute('href', encodedUri);
-            link.setAttribute('download', 'sb_comeny_orders.csv');
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'sb_comeny_orders_' + new Date().toISOString().slice(0, 10) + '.csv';
+            a.click();
+            window.URL.revokeObjectURL(url);
         }
         
-        // Clear All Orders
-        function clearAllOrders() {
-            if (confirm('Are you sure you want to delete all orders? This action cannot be undone!')) {
-                orders = [];
-                saveOrders();
-                loadOrders();
-                alert('All orders have been deleted!');
-            }
-        }
-        
-        // View Order Details
-        function viewOrder(index) {
-            const order = orders[index];
-            alert(
-                `📋 ORDER DETAILS\n\n` +
-                `Customer: ${order.customerName}\n` +
-                `Phone: ${order.phone}\n` +
-                `Address: ${order.address}\n` +
-                `Product: ${order.product}\n` +
-                `Quantity: ${order.quantity}\n` +
-                `Total Price: ₹${order.totalPrice}\n` +
-                `Date: ${formatDate(order.date)}\n` +
-                `Status: ${order.status === 'completed' ? 'Completed' : 'Pending'}\n` +
-                `Notes: ${order.notes || 'None'}`
-            );
-        }
-        
-        // Mark Order as Complete
-        function markComplete(index) {
-            if (confirm('Do you want to mark this order as completed?')) {
-                orders[index].status = 'completed';
-                saveOrders();
-                loadOrders();
-                alert('Order marked as completed!');
-            }
-        }
-        
-        // Delete Single Order
-        function deleteOrder(index) {
-            if (confirm('Do you want to delete this order?')) {
-                orders.splice(index, 1);
-                saveOrders();
-                loadOrders();
-                alert('Order deleted!');
-            }
-        }
-        
-        // Save Orders to localStorage
-        function saveOrders() {
-            localStorage.setItem('sbComenyOrders', JSON.stringify(orders));
-        }
-        
-        // Format Date
-        function formatDate(dateString) {
-            const options = { year: 'numeric', month: 'short', day: 'numeric' };
-            return new Date(dateString).toLocaleDateString('en-US', options);
-        }
-        
-        // Open Order Modal
-        function openOrderModal(productName, productPrice) {
-            document.getElementById('productName').value = productName;
-            document.getElementById('productPrice').value = productPrice;
-            document.getElementById('orderModal').style.display = 'block';
-        }
-        
-        // Close Order Modal
-        function closeOrderModal() {
-            document.getElementById('orderModal').style.display = 'none';
-            document.getElementById('orderForm').reset();
-        }
-        
-        // Submit Order
-        function submitOrder(event) {
-            event.preventDefault();
-            
-            const submitBtn = document.getElementById('submitBtn');
-            submitBtn.textContent = '⏳ Submitting...';
-            submitBtn.classList.add('loading');
-            
-            const productName = document.getElementById('productName').value;
-            const productPrice = parseInt(document.getElementById('productPrice').value);
-            const quantity = parseInt(document.getElementById('quantity').value);
-            const totalPrice = productPrice * quantity;
-            
-            const order = {
-                date: new Date().toISOString(),
-                customerName: document.getElementById('customerName').value,
-                phone: document.getElementById('customerPhone').value,
-                address: document.getElementById('customerAddress').value,
-                product: productName,
-                quantity: quantity,
-                totalPrice: totalPrice,
-                status: 'pending',
-                notes: document.getElementById('orderNotes').value
-            };
-            
-            // Simulate network delay for better UX
-            setTimeout(() => {
-                orders.push(order);
-                saveOrders();
-                
-                submitBtn.textContent = '✓ Order Placed!';
-                submitBtn.style.backgroundColor = '#4CAF50';
-                
-                setTimeout(() => {
-                    closeOrderModal();
-                    submitBtn.textContent = 'Confirm Order';
-                    submitBtn.classList.remove('loading');
-                    submitBtn.style.backgroundColor = 'red';
-                    alert('🎉 Thank you! Your order has been placed successfully. We will contact you soon.');
-                }, 1000);
-            }, 800);
-        }
-        
-        // Close modal when clicking outside
+        // Close modals when clicking outside
         window.onclick = function(event) {
-            const adminPanel = document.getElementById('adminPanel');
-            const orderModal = document.getElementById('orderModal');
-            
-            if (event.target === adminPanel) {
-                closeAdminPanel();
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
             }
-            
-            if (event.target === orderModal) {
-                closeOrderModal();
-            }
-        };
+        }
         
-        // Auto-refresh orders every 30 seconds
+        // Auto-refresh admin stats every 30 seconds
         setInterval(() => {
             if (document.getElementById('adminPanel').style.display === 'block') {
-                loadOrders();
+                updateAdminStats();
+                renderOrdersTable();
             }
         }, 30000);
     </script>
