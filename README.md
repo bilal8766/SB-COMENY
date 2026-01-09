@@ -1,4 +1,4 @@
-<MOHD BILAL >
+<Mohd Bilal>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -30,7 +30,6 @@
 
     .logo-section { display: flex; align-items: center; gap: 15px; }
     .logo { width: 60px; height: 60px; }
-
     .company-name { font-size: 1.8em; font-weight: bold; color: #333; }
     .company-name span { color: #ff416c; }
 
@@ -148,8 +147,6 @@
       box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
     }
 
-    .form-group input:disabled { background: #f5f5f5; cursor: not-allowed; }
-
     .phone-input-group { display: flex; gap: 10px; }
     .country-code { width: 80px !important; text-align: center; }
 
@@ -180,12 +177,6 @@
     .btn-verify:hover:not(:disabled) {
       transform: translateY(-2px);
       box-shadow: 0 5px 20px rgba(56, 239, 125, 0.4);
-    }
-
-    .btn-logout { background: linear-gradient(90deg, #ff416c, #ff4b2b); color: white; }
-    .btn-logout:hover:not(:disabled) {
-      transform: translateY(-2px);
-      box-shadow: 0 5px 20px rgba(255, 65, 108, 0.4);
     }
 
     .message {
@@ -223,13 +214,13 @@
       font-weight: 700;
     }
 
-    /* ========== OWNER IMAGE SECTION (TOP-LEFT FIXED) ========== */
+    /* ========== OWNER CARD (TOP-LEFT FIXED) ========== */
     .owner-card{
       position: fixed;
       top: 90px;          /* navbar ke neeche */
-      left: 20px;         /* left upper corner */
+      left: 20px;
       margin: 0;
-      width: 260px;
+      width: 270px;
       padding: 18px;
       background: white;
       border-radius: 20px;
@@ -250,33 +241,91 @@
 
     .owner-phone{
       font-size: 1.05em;
-      font-weight: 700;
+      font-weight: 800;
       color: #333;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       letter-spacing: 0.4px;
+    }
+
+    /* WhatsApp + Call buttons */
+    .owner-actions{
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin: 10px 0 14px;
+    }
+
+    .action-btn{
+      flex: 1;
+      display: inline-block;
+      text-decoration: none;
+      text-align: center;
+      padding: 10px 12px;
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: 0.95em;
+      border: 2px solid transparent;
+      transition: 0.25s;
+    }
+
+    .action-btn.whatsapp{
+      background: #25D366;
+      color: #fff;
+    }
+    .action-btn.whatsapp:hover{
+      filter: brightness(0.95);
+      transform: translateY(-1px);
+    }
+
+    .action-btn.call{
+      background: #0d6efd;
+      color: #fff;
+    }
+    .action-btn.call:hover{
+      filter: brightness(0.95);
+      transform: translateY(-1px);
     }
 
     .owner-name{
       font-size: 1.25em;
-      font-weight: 800;
+      font-weight: 900;
       color: #222;
       margin-bottom: 6px;
     }
 
     .owner-role{
       font-size: 1.0em;
-      font-weight: 700;
+      font-weight: 800;
       color: #ff416c;
+      margin-bottom: 12px;
+    }
+
+    /* Admin option (owner ke neeche) */
+    .admin-btn{
+      display: inline-block;
+      width: 100%;
+      text-decoration: none;
+      padding: 12px 14px;
+      border-radius: 12px;
+      font-weight: 900;
+      background: linear-gradient(90deg, #ff416c, #ff4b2b);
+      color: #fff;
+      transition: 0.25s;
+    }
+
+    .admin-btn:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 10px 25px rgba(255, 65, 108, 0.35);
     }
 
     /* Desktop/Laptop: content overlap na ho */
     @media (min-width: 992px){
       .main-content{
-        padding-left: 320px; /* owner card ke liye space */
+        padding-left: 330px; /* owner card ke liye space */
       }
     }
 
-    /* Mobile: fixed hata do, normal flow */
+    /* Mobile: fixed hata do */
     @media (max-width: 768px) {
       .navbar { padding: 10px 15px; }
       .logo { width: 45px; height: 45px; }
@@ -339,7 +388,7 @@
     </div>
   </nav>
 
-  <!-- ========== OWNER CARD (TOP-LEFT) ========== -->
+  <!-- ========== OWNER CARD (UPDATED: WhatsApp + Call + Admin) ========== -->
   <div class="owner-card">
     <img
       class="owner-photo"
@@ -347,9 +396,26 @@
       alt="MOHD BILAL (OWNER)"
       loading="lazy"
     />
+
     <div class="owner-phone">9813490892</div>
+
+    <div class="owner-actions">
+      <!-- WhatsApp: +91 added -->
+      <a class="action-btn whatsapp" href="https://wa.me/919813490892" target="_blank" rel="noopener">
+        WhatsApp
+      </a>
+
+      <!-- Call -->
+      <a class="action-btn call" href="tel:+919813490892">
+        Call
+      </a>
+    </div>
+
     <div class="owner-name">MOHD BILAL</div>
     <div class="owner-role">(OWNER)</div>
+
+    <!-- Admin option -->
+    <a class="admin-btn" href="admin.html">Admin</a>
   </div>
 
   <!-- ========== MAIN CONTENT ========== -->
@@ -388,41 +454,4 @@
 
         <div id="recaptcha-container"></div>
 
-        <button class="btn btn-otp" id="sendOtpBtn" type="button">📤 Send OTP</button>
-
-        <div class="otp-section" id="otpSection">
-          <div class="form-group">
-            <label for="otp">🔐 Enter OTP</label>
-            <input type="text" id="otp" placeholder="Enter 6-digit OTP" maxlength="6" inputmode="numeric" />
-          </div>
-          <button class="btn btn-verify" id="verifyOtpBtn" type="button">✅ Verify OTP</button>
-        </div>
-      </div>
-
-      <div id="userInfo">
-        <div class="user-avatar" id="userAvatar">U</div>
-        <h3>✅ Registration Successful</h3>
-        <p id="userDetails" style="color:#444; line-height:1.6;"></p>
-        <button class="btn btn-logout" id="logoutBtn" type="button">🚪 Logout</button>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    // ========== MOBILE MENU ==========
-    const navLinks = document.getElementById("navLinks");
-    const menuToggle = document.getElementById("menuToggle");
-
-    function toggleMenu() {
-      navLinks.classList.toggle("active");
-    }
-
-    menuToggle.addEventListener("click", toggleMenu);
-    menuToggle.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" || e.key === " ") toggleMenu();
-    });
-
-    // NOTE: OTP/Firebase logic aap jab integrate karoge tab yahan add kar sakte ho.
-  </script>
-</body>
-</html>
+        <button class="btn btn-otp"
