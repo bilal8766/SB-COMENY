@@ -1,570 +1,213 @@
-<Mohd Bilal>
+<!-- START UPDATED HTML -->
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SB COMENY - Registration</title>
-  <meta name="description" content="Register at SB COMENY - Create your account with email and mobile OTP verification." />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SB COMENY - Modern Admin Dashboard</title>
+<style>
+/* ===== GLOBAL ===== */
+body{margin:0;font-family:'Segoe UI',Arial,sans-serif;background: linear-gradient(120deg,#667eea,#764ba2);transition: all 0.3s ease;}
+header{text-align:center;font-size:2.2em;font-weight:900;color:white;padding:25px 0;background:linear-gradient(90deg,#ff416c,#ff4b2b);box-shadow:0 5px 25px rgba(0,0,0,.25);border-bottom-left-radius:20px;border-bottom-right-radius:20px;animation: pulse 2s infinite;}
+@keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.02);}}
+header span{font-size:1.5em;margin-left:10px;}
 
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+/* ===== CONTAINER ===== */
+.container{display:flex;gap:30px;flex-wrap:wrap;width:95%;max-width:1200px;justify-content:center;margin-top:30px;}
 
-    body {
-      font-family: 'Segoe UI', Arial, sans-serif;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      min-height: 100vh;
-    }
+/* ===== LEFT OWNER CARD ===== */
+.left{width:260px;background:rgba(255,255,255,0.95);padding:25px;border-radius:20px;box-shadow:0 20px 50px rgba(0,0,0,.25);text-align:center;flex-shrink:0;transition: transform 0.3s;}
+.left:hover{transform:translateY(-5px);}
+.left img{width:120px;height:120px;border-radius:50%;border:5px solid #667eea;object-fit:cover;}
+.left h3{margin:15px 0 5px;color:#333;}
+.left p{margin:5px 0;font-weight:600;color:#555;}
+.btn{width:100%;padding:12px;margin-top:10px;border:none;border-radius:12px;font-weight:700;cursor:pointer;transition:.25s;font-size:1em;}
+.whatsapp{background:#25D366;color:#fff;}
+.call{background:#0d6efd;color:#fff;}
+.admin{background:linear-gradient(90deg,#ff416c,#ff4b2b);color:#fff;}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.25);}
 
-    /* ========== HEADER / NAVBAR ========== */
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 30px;
-      background: white;
-      box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
+/* ===== MAIN CARD ===== */
+.main{flex:1;min-width:320px;max-width:700px;}
+.card{background:rgba(255,255,255,0.95);padding:30px;border-radius:20px;box-shadow:0 20px 50px rgba(0,0,0,.25);margin-bottom:25px;transition:transform 0.3s;}
+.card:hover{transform:translateY(-5px);}
+.card h3{text-align:center;margin-bottom:20px;color:#333;font-size:1.8em;}
+input,select{width:100%;padding:12px 14px;margin:10px 0;border-radius:12px;border:2px solid #ddd;font-size:1em;transition: all 0.3s;}
+input:focus,select:focus{outline:none;border-color:#667eea;box-shadow:0 0 12px rgba(102,126,234,.3);}
+.hidden{display:none;}
 
-    .logo-section { display: flex; align-items: center; gap: 15px; }
-    .logo { width: 60px; height: 60px; }
-    .company-name { font-size: 1.8em; font-weight: bold; color: #333; }
-    .company-name span { color: #ff416c; }
+/* ===== FULLSCREEN MODAL ===== */
+.modal-bg{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);display:flex;justify-content:center;align-items:center;z-index:999;display:none;}
+.modal-content{background:#fff;padding:30px;border-radius:20px;width:90%;max-width:450px;box-shadow:0 20px 50px rgba(0,0,0,.3);}
+.modal-content h3{text-align:center;margin-bottom:20px;}
+.modal-content input{margin:10px 0;}
 
-    .nav-links { display: flex; align-items: center; gap: 10px; }
-    .nav-btn {
-      padding: 10px 25px;
-      border-radius: 25px;
-      font-size: 1em;
-      font-weight: 600;
-      cursor: pointer;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      border: 2px solid transparent;
-      user-select: none;
-    }
-
-    .nav-btn.home { background: transparent; color: #333; border-color: #ddd; }
-    .nav-btn.home:hover { background: #f0f0f0; border-color: #ccc; }
-
-    .nav-btn.login { background: transparent; color: #667eea; border-color: #667eea; }
-    .nav-btn.login:hover { background: #667eea; color: white; }
-
-    .nav-btn.register {
-      background: linear-gradient(90deg, #ff416c, #ff4b2b);
-      color: white;
-      border-color: #ff416c;
-    }
-    .nav-btn.register:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 5px 20px rgba(255, 65, 108, 0.4);
-    }
-
-    .menu-toggle { display: none; flex-direction: column; cursor: pointer; gap: 5px; }
-    .menu-toggle span {
-      width: 25px; height: 3px;
-      background: #333;
-      border-radius: 3px;
-      transition: 0.3s;
-    }
-
-    /* ========== MAIN CONTENT ========== */
-    .main-content { padding: 40px 20px; text-align: center; }
-
-    .welcome-line {
-      font-size: 1.5em;
-      color: white;
-      background: linear-gradient(90deg, #ff416c, #ff4b2b);
-      padding: 15px 40px;
-      margin: 20px auto;
-      border-radius: 50px;
-      display: inline-block;
-      box-shadow: 0 4px 15px rgba(255, 65, 108, 0.4);
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.02); }
-    }
-
-    h1 {
-      color: white;
-      font-size: 3em;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-      margin: 20px 0;
-    }
-
-    .subtitle {
-      font-size: 1.2em;
-      color: rgba(255,255,255,0.9);
-      max-width: 600px;
-      margin: 0 auto 40px;
-      line-height: 1.6;
-    }
-
-    /* ========== REGISTRATION FORM ========== */
-    .registration-form {
-      max-width: 450px;
-      margin: 30px auto;
-      padding: 40px;
-      background: white;
-      border-radius: 20px;
-      box-shadow: 0 15px 50px rgba(0,0,0,0.2);
-      text-align: left;
-    }
-
-    .registration-form h2 {
-      text-align: center;
-      color: #333;
-      margin-bottom: 30px;
-      font-size: 1.8em;
-    }
-
-    .form-group { margin-bottom: 20px; }
-
-    .form-group label {
-      display: block;
-      margin-bottom: 8px;
-      color: #555;
-      font-weight: 600;
-    }
-
-    .form-group input {
-      width: 100%;
-      padding: 14px 16px;
-      border: 2px solid #e0e0e0;
-      border-radius: 10px;
-      font-size: 1em;
-      transition: all 0.3s ease;
-    }
-
-    .form-group input:focus {
-      outline: none;
-      border-color: #667eea;
-      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
-    }
-
-    .phone-input-group { display: flex; gap: 10px; }
-    .country-code { width: 80px !important; text-align: center; }
-
-    .btn {
-      width: 100%;
-      padding: 14px;
-      border: none;
-      border-radius: 10px;
-      font-size: 1em;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .btn:disabled { opacity: 0.6; cursor: not-allowed; }
-
-    .btn-otp {
-      background: linear-gradient(90deg, #667eea, #764ba2);
-      color: white;
-      margin-top: 10px;
-    }
-    .btn-otp:hover:not(:disabled) {
-      transform: translateY(-2px);
-      box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
-    }
-
-    .btn-verify { background: linear-gradient(90deg, #11998e, #38ef7d); color: white; }
-    .btn-verify:hover:not(:disabled) {
-      transform: translateY(-2px);
-      box-shadow: 0 5px 20px rgba(56, 239, 125, 0.4);
-    }
-
-    .message {
-      padding: 12px;
-      border-radius: 10px;
-      margin-bottom: 20px;
-      text-align: center;
-      display: none;
-    }
-    .message.success { background: #d4edda; color: #155724; display: block; }
-    .message.error { background: #f8d7da; color: #721c24; display: block; }
-
-    .otp-section {
-      display: none;
-      margin-top: 20px;
-      padding-top: 20px;
-      border-top: 2px dashed #e0e0e0;
-    }
-    .otp-section.show { display: block; }
-
-    #userInfo { display: none; text-align: center; }
-    #userInfo h3 { color: #28a745; margin-bottom: 20px; }
-
-    .user-avatar {
-      width: 80px;
-      height: 80px;
-      background: linear-gradient(90deg, #667eea, #764ba2);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 20px;
-      font-size: 2em;
-      color: white;
-      font-weight: 700;
-    }
-
-    /* ========== OWNER CARD (TOP-LEFT FIXED) ========== */
-    .owner-card{
-      position: fixed;
-      top: 90px;          /* navbar ke neeche */
-      left: 20px;
-      margin: 0;
-      width: 270px;
-      padding: 18px;
-      background: white;
-      border-radius: 20px;
-      box-shadow: 0 15px 50px rgba(0,0,0,0.2);
-      text-align: center;
-      z-index: 2000;
-    }
-
-    .owner-photo{
-      width: 110px;
-      height: 110px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 5px solid #667eea;
-      display: block;
-      margin: 0 auto 10px;
-    }
-
-    .owner-phone{
-      font-size: 1.05em;
-      font-weight: 800;
-      color: #333;
-      margin-bottom: 10px;
-      letter-spacing: 0.4px;
-    }
-
-    /* WhatsApp + Call buttons */
-    .owner-actions{
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-      margin: 10px 0 14px;
-    }
-
-    .action-btn{
-      flex: 1;
-      display: inline-block;
-      text-decoration: none;
-      text-align: center;
-      padding: 10px 12px;
-      border-radius: 12px;
-      font-weight: 800;
-      font-size: 0.95em;
-      border: 2px solid transparent;
-      transition: 0.25s;
-    }
-
-    .action-btn.whatsapp{
-      background: #25D366;
-      color: #fff;
-    }
-    .action-btn.whatsapp:hover{
-      filter: brightness(0.95);
-      transform: translateY(-1px);
-    }
-
-    .action-btn.call{
-      background: #0d6efd;
-      color: #fff;
-    }
-    .action-btn.call:hover{
-      filter: brightness(0.95);
-      transform: translateY(-1px);
-    }
-
-    .owner-name{
-      font-size: 1.25em;
-      font-weight: 900;
-      color: #222;
-      margin-bottom: 6px;
-    }
-
-    .owner-role{
-      font-size: 1.0em;
-      font-weight: 800;
-      color: #ff416c;
-      margin-bottom: 12px;
-    }
-
-    /* Admin option (owner ke neeche) */
-    .admin-btn{
-      display: inline-block;
-      width: 100%;
-      text-decoration: none;
-      padding: 12px 14px;
-      border-radius: 12px;
-      font-weight: 900;
-      background: linear-gradient(90deg, #ff416c, #ff4b2b);
-      color: #fff;
-      transition: 0.25s;
-    }
-
-    .admin-btn:hover{
-      transform: translateY(-1px);
-      box-shadow: 0 10px 25px rgba(255, 65, 108, 0.35);
-    }
-
-    /* Desktop/Laptop: content overlap na ho */
-    @media (min-width: 992px){
-      .main-content{
-        padding-left: 330px; /* owner card ke liye space */
-      }
-    }
-
-    /* Mobile: fixed hata do */
-    @media (max-width: 768px) {
-      .navbar { padding: 10px 15px; }
-      .logo { width: 45px; height: 45px; }
-      .company-name { font-size: 1.3em; }
-
-      .nav-links {
-        display: none;
-        position: absolute;
-        top: 70px;
-        right: 15px;
-        background: white;
-        flex-direction: column;
-        padding: 15px;
-        border-radius: 10px;
-        box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-        gap: 10px;
-      }
-      .nav-links.active { display: flex; }
-      .menu-toggle { display: flex; }
-
-      h1 { font-size: 2em; }
-      .welcome-line { font-size: 1.1em; padding: 12px 25px; }
-      .registration-form { margin: 20px 15px; padding: 25px 20px; }
-
-      .owner-card{
-        position: static;
-        width: auto;
-        margin: 20px 15px;
-      }
-    }
-  </style>
+/* ===== ADMIN TABLE ===== */
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;}
+th,td{padding:10px;border:1px solid #ddd;text-align:center;}
+th{background:#667eea;color:#fff;cursor:pointer;}
+th:hover{background:#5a67d8;}
+</style>
 </head>
-
 <body>
-  <!-- ========== NAVBAR ========== -->
-  <nav class="navbar">
-<script>
-/* ================= ADMIN + REGISTER SYSTEM (SAME FILE) ================= */
 
-const ADMIN_PASSWORD = "Bilal@8990@3691@9813490892";
+<header>HELLO! WELCOME MY COMPANY <span>💔</span></header>
 
-/* ---------- ADD REGISTER BUTTON ---------- */
-const registerBtn = document.createElement("button");
-registerBtn.className = "btn btn-verify";
-registerBtn.innerText = "Register Account";
-document.getElementById("registrationForm").appendChild(registerBtn);
-
-/* ---------- REGISTER USER ---------- */
-registerBtn.addEventListener("click", function () {
-
-  const name = document.getElementById("fullname").value.trim();
-  const email = document.getElementById("email").value.trim();
-  const mobile = document.getElementById("mobile").value.trim();
-  const msg = document.getElementById("message");
-
-  if (!name || !email || !mobile) {
-    msg.className = "message error";
-    msg.innerText = "❌ Please fill all fields";
-    return;
-  }
-
-  let users = JSON.parse(localStorage.getItem("sb_users")) || [];
-
-  users.push({
-    name,
-    email,
-    mobile: "+91" + mobile,
-    time: new Date().toLocaleString()
-  });
-
-  localStorage.setItem("sb_users", JSON.stringify(users));
-
-  msg.className = "message success";
-  msg.innerText = "✅ Registration Successful";
-
-  fullname.value = "";
-  email.value = "";
-  mobile.value = "";
-});
-
-/* ---------- ADMIN DASHBOARD UI (AUTO CREATE) ---------- */
-const adminHTML = `
-<div id="adminDashboard" style="display:none; padding:40px;">
-  <h2 style="color:white; text-align:center; margin-bottom:20px;">
-    👑 SB COMENY – Admin Dashboard
-  </h2>
-
-  <div style="background:white; border-radius:15px; padding:20px; overflow-x:auto;">
-    <table style="width:100%; border-collapse:collapse;">
-      <thead>
-        <tr style="background:#667eea; color:white;">
-          <th style="padding:10px;">#</th>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Mobile</th>
-          <th>Time</th>
-        </tr>
-      </thead>
-      <tbody id="adminTable"></tbody>
-    </table>
-  </div>
+<div class="container">
+<div class="left">
+<img src="https://raw.githubusercontent.com/bilal8766/SB-COMENY/main/bilal%20khan%20photos.jpeg">
+<h3>MOHD BILAL</h3>
+<p>9813490892</p>
+<p>(OWNER)</p>
+<button class="btn whatsapp" onclick="window.open('https://wa.me/919813490892')">WhatsApp</button>
+<button class="btn call" onclick="location.href='tel:9813490892'">Call</button>
+<button class="btn admin" onclick="openAdmin()">ADMIN</button>
 </div>
-`;
 
-document.body.insertAdjacentHTML("beforeend", adminHTML);
+<div class="main">
+<!-- MODAL FOR REGISTRATION -->
+<div class="modal-bg" id="regModal">
+<div class="modal-content">
+<h3>Register</h3>
+<input id="rName" placeholder="Full Name">
+<input id="rMobile" placeholder="Mobile">
+<input id="rEmail" placeholder="Email">
+<input id="rUser" placeholder="Username">
+<input id="rPass" type="password" placeholder="Password">
+<button class="btn admin" onclick="register()">Register</button>
+<button class="btn" onclick="closeModal()">Cancel</button>
+</div>
+</div>
 
-/* ---------- ADMIN CLICK HANDLER ---------- */
-document.querySelector(".admin-btn").addEventListener("click", function (e) {
-  e.preventDefault();
+<!-- LOGIN CARD -->
+<div class="card" id="loginBox">
+<h3>Login</h3>
+<input id="loginUser" placeholder="Username">
+<input id="loginPass" type="password" placeholder="Password">
+<button class="btn admin" onclick="login()">Login</button>
+<p style="text-align:center;cursor:pointer;margin-top:10px" onclick="openModal()">Register</p>
+</div>
 
-  const pass = prompt("🔐 Enter Admin Password");
+<!-- USER PROFILE -->
+<div class="card hidden" id="userPage">
+<h3>User Profile</h3>
+<div id="userInfo" style="text-align:center;font-weight:600;"></div>
+<button class="btn" onclick="alert('Help: 9813490892')">Help</button>
+<button class="btn">Apply PAN Card</button>
+<button class="btn">Aadhaar Address Change</button>
+<button class="btn admin" onclick="logout()">Logout</button>
+</div>
 
-  if (pass !== ADMIN_PASSWORD) {
-    alert("❌ Wrong Password");
-    return;
-  }
+<!-- ADMIN DASHBOARD -->
+<div class="card hidden" id="adminPage">
+<h3>Admin Dashboard</h3>
+<input id="searchUser" placeholder="Search Username..." onkeyup="filterUsers()">
+<button class="btn" onclick="exportCSV()">Export CSV</button>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Username</th>
+<th>Mobile</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody id="adminData"></tbody>
+</table>
+</div>
 
-  document.querySelector(".main-content").style.display = "none";
-  document.querySelector(".registration-form").style.display = "none";
-  document.getElementById("adminDashboard").style.display = "block";
+</div>
+</div>
 
-  loadAdminData();
-});
+<script>
+const ADMIN_PASS="Bilal@8990@3691@9813490892";
 
-/* ---------- LOAD USERS ---------- */
-function loadAdminData() {
-  const users = JSON.parse(localStorage.getItem("sb_users")) || [];
-  const table = document.getElementById("adminTable");
-  table.innerHTML = "";
+// MODAL HANDLER
+function openModal(){document.getElementById("regModal").style.display="flex";}
+function closeModal(){document.getElementById("regModal").style.display="none";}
 
-  if (users.length === 0) {
-    table.innerHTML = `<tr><td colspan="5" style="text-align:center;">No Users Found</td></tr>`;
-    return;
-  }
+// VALIDATION
+function validateEmail(email){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);}
 
-  users.forEach((u, i) => {
-    table.innerHTML += `
-      <tr style="border-bottom:1px solid #ddd;">
-        <td style="padding:8px;">${i + 1}</td>
-        <td>${u.name}</td>
-        <td>${u.email}</td>
-        <td>${u.mobile}</td>
-        <td>${u.time}</td>
-      </tr>
-    `;
-  });
+function register(){
+let name=rName.value.trim();
+let mobile=rMobile.value.trim();
+let email=rEmail.value.trim();
+let user=rUser.value.trim();
+let pass=rPass.value.trim();
+
+if(!name||!mobile||!email||!user||!pass){alert("All fields required");return;}
+if(!/^\d{10}$/.test(mobile)){alert("Mobile must be 10 digits");return;}
+if(!validateEmail(email)){alert("Enter valid email");return;}
+if(pass.length<6){alert("Password min 6 char");return;}
+
+let users=JSON.parse(localStorage.getItem("users"))||[];
+if(users.find(u=>u.user===user)){alert("Username exists");return;}
+users.push({name,mobile,email,user,pass,active:true});
+localStorage.setItem("users",JSON.stringify(users));
+alert("Registered Successfully");
+closeModal();
+}
+
+function login(){
+let users=JSON.parse(localStorage.getItem("users"))||[];
+let u=users.find(x=>x.user===loginUser.value && x.pass===loginPass.value);
+if(!u){alert("Wrong login");return;}
+if(!u.active){alert("Account Deactivated");return;}
+document.getElementById("loginBox").classList.add("hidden");
+document.getElementById("userPage").classList.remove("hidden");
+userInfo.innerHTML=`<b>Name:</b> ${u.name}<br><b>Mobile:</b> ${u.mobile}<br><b>Email:</b> ${u.email}`;
+}
+
+function logout(){location.reload();}
+
+// ADMIN
+function openAdmin(){
+let p=prompt("Admin Password");
+if(p!==ADMIN_PASS){alert("Wrong Password");return;}
+document.getElementById("adminPage").classList.remove("hidden");
+document.getElementById("loginBox").classList.add("hidden");
+loadAdmin();
+}
+
+function loadAdmin(){
+let users=JSON.parse(localStorage.getItem("users"))||[];
+adminData.innerHTML="";
+users.forEach((u,i)=>{adminData.innerHTML+=`
+<tr>
+<td>${u.name}</td>
+<td>${u.user}</td>
+<td>${u.mobile}</td>
+<td>${u.active?"Active":"Deactive"}</td>
+<td><button onclick="toggle(${i})">Toggle</button></td>
+</tr>`;});
+}
+
+function toggle(i){
+let users=JSON.parse(localStorage.getItem("users"));
+users[i].active=!users[i].active;
+localStorage.setItem("users",JSON.stringify(users));
+loadAdmin();
+}
+
+function filterUsers(){
+let filter=document.getElementById("searchUser").value.toLowerCase();
+let trs=adminData.getElementsByTagName("tr");
+for(let tr of trs){tr.style.display=tr.cells[1].innerText.toLowerCase().includes(filter)?"":"none";}
+}
+
+function exportCSV(){
+let users=JSON.parse(localStorage.getItem("users"))||[];
+let csv="Name,Username,Mobile,Email,Status\n";
+users.forEach(u=>csv+=`${u.name},${u.user},${u.mobile},${u.email},${u.active?"Active":"Deactive"}\n`);
+let blob=new Blob([csv],{type:"text/csv"});
+let a=document.createElement("a");
+a.href=URL.createObjectURL(blob);
+a.download="users.csv";
+a.click();
 }
 </script>
 
-    <div class="logo-section">
-      <svg class="logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-label="SB COMENY Logo">
-        <defs>
-          <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#667eea"/>
-            <stop offset="100%" style="stop-color:#764ba2"/>
-          </linearGradient>
-        </defs>
-        <circle cx="100" cy="100" r="90" fill="url(#logoGradient)" stroke="white" stroke-width="5"/>
-        <text x="100" y="90" font-family="Arial" font-size="50" font-weight="bold" fill="#ff416c" text-anchor="middle">SB</text>
-        <text x="100" y="125" font-family="Arial" font-size="20" fill="white" text-anchor="middle">COMENY</text>
-      </svg>
-      <div class="company-name"><span>SB</span> COMENY</div>
-    </div>
-
-    <div class="nav-links" id="navLinks">
-      <a href="#" class="nav-btn home">🏠 Home</a>
-      <a href="#" class="nav-btn login">🔑 Login</a>
-      <a href="#" class="nav-btn register">📝 Register</a>
-    </div>
-
-    <div class="menu-toggle" id="menuToggle" aria-label="Toggle menu" role="button" tabindex="0">
-      <span></span><span></span><span></span>
-    </div>
-  </nav>
-
-  <!-- ========== OWNER CARD (UPDATED: WhatsApp + Call + Admin) ========== -->
-  <div class="owner-card">
-    <img
-      class="owner-photo"
-      src="https://raw.githubusercontent.com/bilal8766/SB-COMENY/main/bilal%20khan%20photos.jpeg"
-      alt="MOHD BILAL (OWNER)"
-      loading="lazy"
-    />
-
-    <div class="owner-phone">9813490892</div>
-
-    <div class="owner-actions">
-      <!-- WhatsApp: +91 added -->
-      <a class="action-btn whatsapp" href="https://wa.me/919813490892" target="_blank" rel="noopener">
-        WhatsApp
-      </a>
-
-      <!-- Call -->
-      <a class="action-btn call" href="tel:+919813490892">
-        Call
-      </a>
-    </div>
-
-    <div class="owner-name">MOHD BILAL</div>
-    <div class="owner-role">(OWNER)</div>
-
-    <!-- Admin option -->
-    <a class="admin-btn" href="admin.html">Admin</a>
-  </div>
-
-  <!-- ========== MAIN CONTENT ========== -->
-  <div class="main-content">
-    <div class="welcome-line">🎉 HELLO! WELCOME TO MY COMPANY 🎉</div>
-
-    <h1>SB COMENY</h1>
-    <p class="subtitle">
-      Welcome to SB COMENY! This is the starting page of your dream company.
-      We're just getting started—stay tuned for more amazing things!
-    </p>
-
-    <!-- Registration Form -->
-    <div class="registration-form">
-      <h2>📝 Create Account</h2>
-      <div id="message" class="message"></div>
-
-      <div id="registrationForm">
-        <div class="form-group">
-          <label for="fullname">👤 Full Name</label>
-          <input type="text" id="fullname" placeholder="Enter your full name" autocomplete="name" required />
-        </div>
-
-        <div class="form-group">
-          <label for="email">📧 Email Address</label>
-          <input type="email" id="email" placeholder="example@email.com" autocomplete="email" required />
-        </div>
-
-        <div class="form-group">
-          <label for="mobile">📱 Mobile Number</label>
-          <div class="phone-input-group">
-            <input type="text" id="countryCode" class="country-code" value="+91" aria-label="Country code" />
-            <input type="tel" id="mobile" placeholder="9876543210" maxlength="10" inputmode="numeric" required />
-          </div>
-        </div>
-
-        <div id="recaptcha-container"></div>
-
-        <button class="btn btn-otp"
+</body>
+</html>
