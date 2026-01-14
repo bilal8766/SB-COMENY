@@ -362,6 +362,119 @@
 <body>
   <!-- ========== NAVBAR ========== -->
   <nav class="navbar">
+<script>
+/* ================= ADMIN + REGISTER SYSTEM (SAME FILE) ================= */
+
+const ADMIN_PASSWORD = "Bilal@8990@3691@9813490892";
+
+/* ---------- ADD REGISTER BUTTON ---------- */
+const registerBtn = document.createElement("button");
+registerBtn.className = "btn btn-verify";
+registerBtn.innerText = "Register Account";
+document.getElementById("registrationForm").appendChild(registerBtn);
+
+/* ---------- REGISTER USER ---------- */
+registerBtn.addEventListener("click", function () {
+
+  const name = document.getElementById("fullname").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const mobile = document.getElementById("mobile").value.trim();
+  const msg = document.getElementById("message");
+
+  if (!name || !email || !mobile) {
+    msg.className = "message error";
+    msg.innerText = "❌ Please fill all fields";
+    return;
+  }
+
+  let users = JSON.parse(localStorage.getItem("sb_users")) || [];
+
+  users.push({
+    name,
+    email,
+    mobile: "+91" + mobile,
+    time: new Date().toLocaleString()
+  });
+
+  localStorage.setItem("sb_users", JSON.stringify(users));
+
+  msg.className = "message success";
+  msg.innerText = "✅ Registration Successful";
+
+  fullname.value = "";
+  email.value = "";
+  mobile.value = "";
+});
+
+/* ---------- ADMIN DASHBOARD UI (AUTO CREATE) ---------- */
+const adminHTML = `
+<div id="adminDashboard" style="display:none; padding:40px;">
+  <h2 style="color:white; text-align:center; margin-bottom:20px;">
+    👑 SB COMENY – Admin Dashboard
+  </h2>
+
+  <div style="background:white; border-radius:15px; padding:20px; overflow-x:auto;">
+    <table style="width:100%; border-collapse:collapse;">
+      <thead>
+        <tr style="background:#667eea; color:white;">
+          <th style="padding:10px;">#</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Mobile</th>
+          <th>Time</th>
+        </tr>
+      </thead>
+      <tbody id="adminTable"></tbody>
+    </table>
+  </div>
+</div>
+`;
+
+document.body.insertAdjacentHTML("beforeend", adminHTML);
+
+/* ---------- ADMIN CLICK HANDLER ---------- */
+document.querySelector(".admin-btn").addEventListener("click", function (e) {
+  e.preventDefault();
+
+  const pass = prompt("🔐 Enter Admin Password");
+
+  if (pass !== ADMIN_PASSWORD) {
+    alert("❌ Wrong Password");
+    return;
+  }
+
+  document.querySelector(".main-content").style.display = "none";
+  document.querySelector(".registration-form").style.display = "none";
+  document.getElementById("adminDashboard").style.display = "block";
+
+  loadAdminData();
+});
+
+/* ---------- LOAD USERS ---------- */
+function loadAdminData() {
+  const users = JSON.parse(localStorage.getItem("sb_users")) || [];
+  const table = document.getElementById("adminTable");
+  table.innerHTML = "";
+
+  if (users.length === 0) {
+    table.innerHTML = `<tr><td colspan="5" style="text-align:center;">No Users Found</td></tr>`;
+    return;
+  }
+
+  users.forEach((u, i) => {
+    table.innerHTML += `
+      <tr style="border-bottom:1px solid #ddd;">
+        <td style="padding:8px;">${i + 1}</td>
+        <td>${u.name}</td>
+        <td>${u.email}</td>
+        <td>${u.mobile}</td>
+        <td>${u.time}</td>
+      </tr>
+    `;
+  });
+}
+</script>
+
     <div class="logo-section">
       <svg class="logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-label="SB COMENY Logo">
         <defs>
