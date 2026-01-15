@@ -1,4 +1,3 @@
-<!-- START UPDATED HTML -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,11 +10,7 @@ body{margin:0;font-family:'Segoe UI',Arial,sans-serif;background: linear-gradien
 header{text-align:center;font-size:2.2em;font-weight:900;color:white;padding:25px 0;background:linear-gradient(90deg,#ff416c,#ff4b2b);box-shadow:0 5px 25px rgba(0,0,0,.25);border-bottom-left-radius:20px;border-bottom-right-radius:20px;animation: pulse 2s infinite;}
 @keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.02);}}
 header span{font-size:1.5em;margin-left:10px;}
-
-/* ===== CONTAINER ===== */
 .container{display:flex;gap:30px;flex-wrap:wrap;width:95%;max-width:1200px;justify-content:center;margin-top:30px;}
-
-/* ===== LEFT OWNER CARD ===== */
 .left{width:260px;background:rgba(255,255,255,0.95);padding:25px;border-radius:20px;box-shadow:0 20px 50px rgba(0,0,0,.25);text-align:center;flex-shrink:0;transition: transform 0.3s;}
 .left:hover{transform:translateY(-5px);}
 .left img{width:120px;height:120px;border-radius:50%;border:5px solid #667eea;object-fit:cover;}
@@ -26,8 +21,6 @@ header span{font-size:1.5em;margin-left:10px;}
 .call{background:#0d6efd;color:#fff;}
 .admin{background:linear-gradient(90deg,#ff416c,#ff4b2b);color:#fff;}
 .btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.25);}
-
-/* ===== MAIN CARD ===== */
 .main{flex:1;min-width:320px;max-width:700px;}
 .card{background:rgba(255,255,255,0.95);padding:30px;border-radius:20px;box-shadow:0 20px 50px rgba(0,0,0,.25);margin-bottom:25px;transition:transform 0.3s;}
 .card:hover{transform:translateY(-5px);}
@@ -35,14 +28,10 @@ header span{font-size:1.5em;margin-left:10px;}
 input,select{width:100%;padding:12px 14px;margin:10px 0;border-radius:12px;border:2px solid #ddd;font-size:1em;transition: all 0.3s;}
 input:focus,select:focus{outline:none;border-color:#667eea;box-shadow:0 0 12px rgba(102,126,234,.3);}
 .hidden{display:none;}
-
-/* ===== FULLSCREEN MODAL ===== */
 .modal-bg{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);display:flex;justify-content:center;align-items:center;z-index:999;display:none;}
 .modal-content{background:#fff;padding:30px;border-radius:20px;width:90%;max-width:450px;box-shadow:0 20px 50px rgba(0,0,0,.3);}
 .modal-content h3{text-align:center;margin-bottom:20px;}
 .modal-content input{margin:10px 0;}
-
-/* ===== ADMIN TABLE ===== */
 table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;}
 th,td{padding:10px;border:1px solid #ddd;text-align:center;}
 th{background:#667eea;color:#fff;cursor:pointer;}
@@ -120,92 +109,124 @@ th:hover{background:#5a67d8;}
 </div>
 </div>
 
-<script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+import { getDatabase, ref, push, set, onValue, update } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+  databaseURL: "https://YOUR_PROJECT_ID.firebaseio.com",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_PROJECT_ID.appspot.com",
+  messagingSenderId: "YOUR_SENDER_ID",
+  appId: "YOUR_APP_ID"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
 const ADMIN_PASS="Bilal@8990@3691@9813490892";
 
-// MODAL HANDLER
 function openModal(){document.getElementById("regModal").style.display="flex";}
 function closeModal(){document.getElementById("regModal").style.display="none";}
-
-// VALIDATION
 function validateEmail(email){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);}
 
-function register(){
-let name=rName.value.trim();
-let mobile=rMobile.value.trim();
-let email=rEmail.value.trim();
-let user=rUser.value.trim();
-let pass=rPass.value.trim();
+window.register = function(){
+  let name=rName.value.trim();
+  let mobile=rMobile.value.trim();
+  let email=rEmail.value.trim();
+  let user=rUser.value.trim();
+  let pass=rPass.value.trim();
 
-if(!name||!mobile||!email||!user||!pass){alert("All fields required");return;}
-if(!/^\d{10}$/.test(mobile)){alert("Mobile must be 10 digits");return;}
-if(!validateEmail(email)){alert("Enter valid email");return;}
-if(pass.length<6){alert("Password min 6 char");return;}
+  if(!name||!mobile||!email||!user||!pass){alert("All fields required");return;}
+  if(!/^\d{10}$/.test(mobile)){alert("Mobile must be 10 digits");return;}
+  if(!validateEmail(email)){alert("Enter valid email");return;}
+  if(pass.length<6){alert("Password min 6 char");return;}
 
-let users=JSON.parse(localStorage.getItem("users"))||[];
-if(users.find(u=>u.user===user)){alert("Username exists");return;}
-users.push({name,mobile,email,user,pass,active:true});
-localStorage.setItem("users",JSON.stringify(users));
-alert("Registered Successfully");
-closeModal();
+  const usersRef = ref(db, 'users');
+  const newUserRef = push(usersRef);
+  set(newUserRef, {name,mobile,email,user,pass,active:true})
+    .then(()=>{alert("Registered Successfully"); closeModal();})
+    .catch(err=>alert("Error: "+err));
 }
 
-function login(){
-let users=JSON.parse(localStorage.getItem("users"))||[];
-let u=users.find(x=>x.user===loginUser.value && x.pass===loginPass.value);
-if(!u){alert("Wrong login");return;}
-if(!u.active){alert("Account Deactivated");return;}
-document.getElementById("loginBox").classList.add("hidden");
-document.getElementById("userPage").classList.remove("hidden");
-userInfo.innerHTML=`<b>Name:</b> ${u.name}<br><b>Mobile:</b> ${u.mobile}<br><b>Email:</b> ${u.email}`;
+window.login = function(){
+  const usersRef = ref(db, 'users');
+  const username = loginUser.value;
+  const password = loginPass.value;
+  onValue(usersRef, snapshot=>{
+    const users = snapshot.val();
+    let found = false;
+    for(let key in users){
+      const u = users[key];
+      if(u.user===username && u.pass===password){
+        found = true;
+        if(!u.active){alert("Account Deactivated"); return;}
+        document.getElementById("loginBox").classList.add("hidden");
+        document.getElementById("userPage").classList.remove("hidden");
+        userInfo.innerHTML=`<b>Name:</b> ${u.name}<br><b>Mobile:</b> ${u.mobile}<br><b>Email:</b> ${u.email}`;
+      }
+    }
+    if(!found) alert("Wrong login");
+  }, {onlyOnce:true});
 }
 
-function logout(){location.reload();}
+window.logout = function(){location.reload();}
 
-// ADMIN
-function openAdmin(){
-let p=prompt("Admin Password");
-if(p!==ADMIN_PASS){alert("Wrong Password");return;}
-document.getElementById("adminPage").classList.remove("hidden");
-document.getElementById("loginBox").classList.add("hidden");
-loadAdmin();
+window.openAdmin = function(){
+  let p = prompt("Admin Password");
+  if(p!==ADMIN_PASS){alert("Wrong Password"); return;}
+  document.getElementById("adminPage").classList.remove("hidden");
+  document.getElementById("loginBox").classList.add("hidden");
+  loadAdmin();
 }
 
-function loadAdmin(){
-let users=JSON.parse(localStorage.getItem("users"))||[];
-adminData.innerHTML="";
-users.forEach((u,i)=>{adminData.innerHTML+=`
-<tr>
-<td>${u.name}</td>
-<td>${u.user}</td>
-<td>${u.mobile}</td>
-<td>${u.active?"Active":"Deactive"}</td>
-<td><button onclick="toggle(${i})">Toggle</button></td>
-</tr>`;});
+window.loadAdmin = function(){
+  const usersRef = ref(db, 'users');
+  onValue(usersRef, snapshot=>{
+    const users = snapshot.val();
+    adminData.innerHTML="";
+    for(let key in users){
+      const u = users[key];
+      adminData.innerHTML += `
+      <tr>
+      <td>${u.name}</td>
+      <td>${u.user}</td>
+      <td>${u.mobile}</td>
+      <td>${u.active?"Active":"Deactive"}</td>
+      <td><button onclick="toggleUser('${key}',${u.active})">Toggle</button></td>
+      </tr>`;
+    }
+  });
 }
 
-function toggle(i){
-let users=JSON.parse(localStorage.getItem("users"));
-users[i].active=!users[i].active;
-localStorage.setItem("users",JSON.stringify(users));
-loadAdmin();
+window.toggleUser = function(key, current){
+  const userRef = ref(db, 'users/' + key);
+  update(userRef, {active: !current});
 }
 
-function filterUsers(){
-let filter=document.getElementById("searchUser").value.toLowerCase();
-let trs=adminData.getElementsByTagName("tr");
-for(let tr of trs){tr.style.display=tr.cells[1].innerText.toLowerCase().includes(filter)?"":"none";}
+window.filterUsers = function(){
+  let filter=document.getElementById("searchUser").value.toLowerCase();
+  let trs=adminData.getElementsByTagName("tr");
+  for(let tr of trs){tr.style.display=tr.cells[1].innerText.toLowerCase().includes(filter)?"":"none";}
 }
 
-function exportCSV(){
-let users=JSON.parse(localStorage.getItem("users"))||[];
-let csv="Name,Username,Mobile,Email,Status\n";
-users.forEach(u=>csv+=`${u.name},${u.user},${u.mobile},${u.email},${u.active?"Active":"Deactive"}\n`);
-let blob=new Blob([csv],{type:"text/csv"});
-let a=document.createElement("a");
-a.href=URL.createObjectURL(blob);
-a.download="users.csv";
-a.click();
+window.exportCSV = function(){
+  const usersRef = ref(db, 'users');
+  onValue(usersRef, snapshot=>{
+    const users = snapshot.val();
+    let csv="Name,Username,Mobile,Email,Status\n";
+    for(let key in users){
+      let u = users[key];
+      csv+=`${u.name},${u.user},${u.mobile},${u.email},${u.active?"Active":"Deactive"}\n`;
+    }
+    let blob = new Blob([csv],{type:"text/csv"});
+    let a=document.createElement("a");
+    a.href=URL.createObjectURL(blob);
+    a.download="users.csv";
+    a.click();
+  }, {onlyOnce:true});
 }
 </script>
 
