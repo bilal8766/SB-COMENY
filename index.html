@@ -78,7 +78,7 @@ th{font-weight:700}
   margin-top:20px;padding:10px 20px;border:none;border-radius:6px;
   background:#ff4b2b;color:#fff;cursor:pointer
 }
-.hr{border:0;border-top:1px solid rgba(255,255,255,.25);margin:14px 0}
+hr{border:0;border-top:1px solid rgba(255,255,255,.25);margin:14px 0}
 .small{display:block;margin-top:8px;opacity:.85;font-size:12px}
 </style>
 </head>
@@ -113,32 +113,22 @@ th{font-weight:700}
       <input id="lPass" type="password" placeholder="Password" />
       <button class="btnMain" onclick="login()">Login</button>
       <div class="link" onclick="showRegister()">Create Account</div>
-      <small class="small">Note: New account registration requires Mobile OTP.</small>
     </div>
 
     <div id="registerBox" class="hidden">
       <h2>Register</h2>
-      <h3 style="margin:0 0 6px">Mobile OTP (Required)</h3>
-      <input id="otpPhone" placeholder="Mobile Number (10 digits)" type="tel" />
-      <div id="recaptcha-container" style="margin:10px 0;"></div>
-      <button class="btnMain" onclick="sendOTP()">Send OTP</button>
-      <input id="otpCode" placeholder="Enter OTP" />
-      <button class="btnMain" onclick="verifyOTP()">Verify OTP</button>
-      <small class="small" id="otpStatus">Status: Not verified</small>
-      <hr class="hr" />
       <input id="rName" placeholder="Full Name" />
       <input id="rUser" placeholder="Username" />
       <input id="rEmail" placeholder="Email" />
-      <input id="rMobile" placeholder="Verified Mobile (auto)" type="tel" readonly />
+      <input id="rMobile" placeholder="Mobile Number (required)" type="tel" />
       <input id="rPass" type="password" placeholder="Password" />
-      <button class="btnMain" onclick="register()">Register (OTP Required)</button>
+      <button class="btnMain" onclick="register()">Register</button>
       <div class="link" onclick="showLogin()">Back to Login</div>
-      <small class="small">OTP works only on HTTPS (GitHub Pages OK).</small>
     </div>
 
     <div id="dashBox" class="hidden">
       <h2 id="welcomeText"></h2>
-      
+
       <button onclick="showLiveLocation()" style="background:#0d6efd;color:#fff;padding:8px 16px;border:none;border-radius:8px;cursor:pointer;margin:8px 0;">
         Show Live Location
       </button>
@@ -153,19 +143,20 @@ th{font-weight:700}
         <h3 style="margin:10px 0">Registered Users (Latest First)</h3>
         <div class="tableWrap">
           <table>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Username</th>
-                <th>Email</th>
-                <th>Mobile</th>
-                <th>Status</th>
-                <th>Registered Loc</th>
-                <th>Last Seen Loc</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody id="usersTbody"></tbody>
+              <thead>
+                  <tr>
+                      <th>Name</th>
+                      <th>Username</th>
+                      <th>Email</th>
+                      <th>Mobile</th>
+                      <th>Status</th>
+                      <th>Registered Loc</th>
+                      <th>Last Seen Loc</th>
+                      <th>Action</th>
+                  </tr>
+              </thead>
+              <tbody id="usersTbody">
+              </tbody>
           </table>
         </div>
         <small class="small">Tip: Inactive user login block ho jayega.</small>
@@ -186,7 +177,7 @@ th{font-weight:700}
 <div class="modal" id="helpModal">
   <div style="width:min(520px,92vw);background:rgba(255,255,255,.12);padding:18px;border-radius:14px;color:#fff">
     <h2 style="margin:0 0 10px">Help</h2>
-    <p style="margin:0 0 10px">Support Number: <b>9813490892</b></p>
+    <p>Support Number: <b>9813490892</b></p>
     <button class="btnMain" style="background:#25D366" onclick="window.open('https://wa.me/919813490892','_blank')">WhatsApp</button>
     <button class="btnMain" style="margin-top:10px" onclick="closeHelp()">Close</button>
   </div>
@@ -199,11 +190,7 @@ th{font-weight:700}
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     onAuthStateChanged,
-    signOut,
-    RecaptchaVerifier,
-    signInWithPhoneNumber,
-    linkWithCredential,
-    EmailAuthProvider
+    signOut
   } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
   import {
     getFirestore,
@@ -235,48 +222,43 @@ th{font-weight:700}
   const auth = getAuth(app);
   const db = getFirestore(app);
 
+  // DOM Elements
   const loginBox = document.getElementById("loginBox");
   const registerBox = document.getElementById("registerBox");
   const dashBox = document.getElementById("dashBox");
   const welcomeText = document.getElementById("welcomeText");
   const adminPanel = document.getElementById("adminPanel");
   const usersTbody = document.getElementById("usersTbody");
-
   const userInfoLine = document.getElementById("userInfoLine");
   const pwdLine = document.getElementById("pwdLine");
   const regLocLine = document.getElementById("regLocLine");
   const curLocLine = document.getElementById("curLocLine");
   const liveLocationDisplay = document.getElementById("liveLocationDisplay");
-
   const lUser = document.getElementById("lUser");
   const lPass = document.getElementById("lPass");
-
-  const otpPhone = document.getElementById("otpPhone");
-  const otpCode = document.getElementById("otpCode");
-  const otpStatus = document.getElementById("otpStatus");
-
   const rName = document.getElementById("rName");
   const rUser = document.getElementById("rUser");
   const rEmail = document.getElementById("rEmail");
   const rMobile = document.getElementById("rMobile");
   const rPass = document.getElementById("rPass");
 
-  function showLogin() {
+  // Helpers for UI & location
+  window.showLogin = () => {
     loginBox.classList.remove("hidden");
     registerBox.classList.add("hidden");
     dashBox.classList.add("hidden");
     adminPanel.classList.add("hidden");
     liveLocationDisplay.innerText = "";
-  }
+  };
 
-  function showRegister() {
+  window.showRegister = () => {
     loginBox.classList.add("hidden");
     registerBox.classList.remove("hidden");
     dashBox.classList.add("hidden");
     adminPanel.classList.add("hidden");
     liveLocationDisplay.innerText = "";
-  }
-  
+  };
+
   window.openEmployee = () => (document.getElementById("empModal").style.display = "flex");
   window.closeEmployee = () => (document.getElementById("empModal").style.display = "none");
   window.openHelp = () => (document.getElementById("helpModal").style.display = "flex");
@@ -286,7 +268,7 @@ th{font-weight:700}
     if (!("geolocation" in navigator)) return null;
     return new Promise((resolve) =>
       navigator.geolocation.getCurrentPosition(
-        (pos) => resolve({ lat: pos.coords.latitude, lng: pos.coords.longitude, accuracy: pos.coords.accuracy, capturedAt: new Date().toISOString() }),
+        (pos) => resolve({ lat: pos.coords.latitude, lng: pos.coords.longitude }),
         () => resolve(null),
         { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
       )
@@ -306,65 +288,15 @@ th{font-weight:700}
     return `<a href="${url}" target="_blank" style="color:#fff;text-decoration:underline">${text}</a>`;
   }
 
-  let confirmationResult = null;
-  let otpVerifiedMobile = null;
+  window.sendOTP = () => alert("OTP disabled in this version");
 
-  function initRecaptcha() {
-    if (window.recaptchaVerifier) return;
-    window.recaptchaVerifier = new RecaptchaVerifier(auth, "recaptcha-container", { size: "normal" });
-  }
-  initRecaptcha();
-
-  window.sendOTP = async () => {
-    try {
-      initRecaptcha();
-      const phone10 = (otpPhone.value || "").trim();
-      if (!/^\d{10}$/.test(phone10)) {
-        alert("Enter valid 10 digit mobile number");
-        return;
-      }
-      const phoneE164 = "+91" + phone10;
-      confirmationResult = await signInWithPhoneNumber(auth, phoneE164, window.recaptchaVerifier);
-      otpStatus.innerText = "Status: OTP Sent";
-      alert("OTP sent!");
-    } catch (e) {
-      otpStatus.innerText = "Status: Not verified";
-      alert("OTP send failed: " + e.message);
-    }
-  };
-
-  window.verifyOTP = async () => {
-    try {
-      const code = (otpCode.value || "").trim();
-      if (!confirmationResult) {
-        alert("Please send OTP first");
-        return;
-      }
-      if (!code) {
-        alert("Enter OTP");
-        return;
-      }
-      const cred = await confirmationResult.confirm(code);
-      const phoneE164 = cred.user?.phoneNumber || null;
-      if (!phoneE164) {
-        alert("Phone verification failed");
-        return;
-      }
-      otpVerifiedMobile = phoneE164.replace("+91", "");
-      rMobile.value = otpVerifiedMobile;
-      otpStatus.innerText = "Status: Verified (" + otpVerifiedMobile + ")";
-      alert("OTP verified!");
-    } catch (e) {
-      otpStatus.innerText = "Status: Not verified";
-      alert("OTP verify failed: " + e.message);
-    }
-  };
+  window.verifyOTP = () => alert("OTP disabled in this version");
 
   window.login = async () => {
     const input = lUser.value.trim();
     const pass = lPass.value.trim();
     if (!input || !pass) {
-      alert("Enter Email/Username + Password");
+      alert("Enter Email or Username and Password");
       return;
     }
     try {
@@ -388,30 +320,30 @@ th{font-weight:700}
     const name = rName.value.trim();
     const usernameRaw = rUser.value.trim();
     const email = rEmail.value.trim();
+    const mobile = rMobile.value.trim();
     const pass = rPass.value.trim();
-    if (!otpVerifiedMobile) {
-      alert("OTP verification required. Please verify mobile first.");
+    if (!name || !usernameRaw || !email || !mobile || !pass) {
+      alert("Please fill all fields.");
       return;
     }
-    if (!name || !usernameRaw || !email || !pass) {
-      alert("Please fill all fields.");
+    if (!/^\d{10}$/.test(mobile)) {
+      alert("Mobile number should be 10 digits.");
       return;
     }
     const username = usernameRaw.toLowerCase();
     try {
       const regLocation = await getGeo();
-      const emailCred = EmailAuthProvider.credential(email, pass);
-      await linkWithCredential(auth.currentUser, emailCred);
+      const cred = await createUserWithEmailAndPassword(auth, email, pass);
       await runTransaction(db, async (tx) => {
         const usernameRef = doc(db, "usernames", username);
         const usernameSnap = await tx.get(usernameRef);
         if (usernameSnap.exists()) throw new Error("Username already taken.");
-        tx.set(doc(db, "users", auth.currentUser.uid), {
+        tx.set(doc(db, "users", cred.user.uid), {
           name,
           username: usernameRaw,
           usernameLower: username,
           email,
-          mobile: otpVerifiedMobile,
+          mobile,
           status: "active",
           regLocation: regLocation || null,
           lastLocation: regLocation || null,
@@ -419,18 +351,12 @@ th{font-weight:700}
           createdAt: serverTimestamp()
         });
         tx.set(usernameRef, {
-          uid: auth.currentUser.uid,
+          uid: cred.user.uid,
           email,
           createdAt: serverTimestamp()
         });
       });
       alert("Registered successfully!");
-      confirmationResult = null;
-      otpVerifiedMobile = null;
-      otpStatus.innerText = "Status: Not verified";
-      otpPhone.value = "";
-      otpCode.value = "";
-      rMobile.value = "";
       showLogin();
     } catch (e) {
       alert("Register failed: " + e.message);
@@ -439,21 +365,15 @@ th{font-weight:700}
 
   window.logout = async () => {
     await signOut(auth);
-    confirmationResult = null;
-    otpVerifiedMobile = null;
-    otpStatus.innerText = "Status: Not verified";
-    otpPhone.value = "";
-    otpCode.value = "";
-    rMobile.value = "";
     showLogin();
   };
 
   async function loadAllUsersForAdmin() {
-    usersTbody.innerHTML = `<tr><td colspan="8"><small>Loading...</small></td></tr>`;
-    const qy = query(collection(db, "users"), orderBy("createdAt", "desc"));
-    const snap = await getDocs(qy);
+    usersTbody.innerHTML = `<tr><td colspan="8" style="text-align:center">Loading...</td></tr>`;
+    const q = query(collection(db, "users"), orderBy("createdAt", "desc"));
+    const snap = await getDocs(q);
     if (snap.empty) {
-      usersTbody.innerHTML = `<tr><td colspan="8"><small>No users found.</small></td></tr>`;
+      usersTbody.innerHTML = `<tr><td colspan="8" style="text-align:center">No users found.</td></tr>`;
       return;
     }
     usersTbody.innerHTML = "";
@@ -462,27 +382,27 @@ th{font-weight:700}
       const status = u.status || "active";
       const tr = document.createElement("tr");
       tr.innerHTML = `
-        <td>${u.name || "-"}</td>
-        <td>${u.username || "-"}</td>
-        <td>${u.email || "-"}</td>
-        <td>${u.mobile || "-"}</td>
+        <td>${u.name||"-"}</td>
+        <td>${u.username||"-"}</td>
+        <td>${u.email||"-"}</td>
+        <td>${u.mobile||"-"}</td>
         <td data-col="status">${status}</td>
         <td>${fmtLocLink(u.regLocation)}</td>
         <td>${fmtLocLink(u.lastLocation)}</td>
         <td>
-          <button class="toggleBtn ${status === "inactive" ? "inactive" : "active"}"
+          <button class="toggleBtn ${status==="inactive" ? "inactive":"active"}"
             data-uid="${d.id}" data-status="${status}">
-            ${status === "active" ? "Deactivate" : "Activate"}
+            ${status==="active" ? "Deactivate" : "Activate"}
           </button>
-        </td>
-      `;
+        </td>       
+        `;
       usersTbody.appendChild(tr);
     });
   }
 
-  usersTbody.addEventListener("click", async (e) => {
+  usersTbody.addEventListener("click", async (e)=>{
     const btn = e.target.closest(".toggleBtn");
-    if (!btn) return;
+    if(!btn) return;
     const uid = btn.dataset.uid;
     const current = btn.dataset.status;
     const next = current === "active" ? "inactive" : "active";
@@ -490,47 +410,48 @@ th{font-weight:700}
       await updateDoc(doc(db, "users", uid), { status: next });
       btn.dataset.status = next;
       btn.textContent = next === "active" ? "Deactivate" : "Activate";
-      btn.classList.toggle("inactive", next === "inactive");
-      btn.classList.toggle("active", next === "active");
+      btn.classList.toggle("inactive", next==="inactive");
+      btn.classList.toggle("active", next==="active");
       btn.closest("tr").querySelector('td[data-col="status"]').textContent = next;
-    } catch (err) {
-      alert("Failed: " + err.message);
+    } catch(e) {
+      alert("Failed: "+ e.message);
     }
   });
 
   window.goToAdminDashboard = async () => {
-    const user = auth.currentUser;
-    if (!user) {
+    let user = auth.currentUser;
+    if(!user){
       alert("Please login first with Admin account.");
       showLogin();
       return;
     }
-    if (user.uid === ADMIN_UID) {
+    if(user.uid === ADMIN_UID){
       loginBox.classList.add("hidden");
       registerBox.classList.add("hidden");
       dashBox.classList.remove("hidden");
-      welcomeText.innerText = "Admin Dashboard";
+      welcomeText.innerText="Admin Dashboard";
       adminPanel.classList.remove("hidden");
       userInfoLine.innerText = "";
       pwdLine.innerText = "";
       regLocLine.innerText = "";
       curLocLine.innerText = "";
       await loadAllUsersForAdmin();
-    } else {
+    }else{
       alert("You are not authorized as admin.");
     }
   };
 
+
   onAuthStateChanged(auth, async (user) => {
-    if (!user) {
+    if(!user){
       showLogin();
       return;
     }
-    if (user.uid === ADMIN_UID) {
+    if(user.uid === ADMIN_UID){
       loginBox.classList.add("hidden");
       registerBox.classList.add("hidden");
       dashBox.classList.remove("hidden");
-      welcomeText.innerText = "Admin Dashboard";
+      welcomeText.innerText="Admin Dashboard";
       adminPanel.classList.remove("hidden");
       userInfoLine.innerText = "";
       pwdLine.innerText = "";
@@ -539,59 +460,55 @@ th{font-weight:700}
       await loadAllUsersForAdmin();
       return;
     }
-    try {
+    try{
       const uRef = doc(db, "users", user.uid);
       const uSnap = await getDoc(uRef);
+
       loginBox.classList.add("hidden");
       registerBox.classList.add("hidden");
       dashBox.classList.remove("hidden");
       adminPanel.classList.add("hidden");
-      if (!uSnap.exists()) {
-        welcomeText.innerText = "Welcome " + (user.email || user.phoneNumber || "");
+
+      if(!uSnap.exists()){
+        welcomeText.innerText = "Welcome "+(user.email||user.phoneNumber||"");
         userInfoLine.innerText = "";
         pwdLine.innerText = "Password: Hidden for security";
         regLocLine.innerText = "Registered Location: -";
         curLocLine.innerText = "Current Location: -";
         return;
       }
-      const u = uSnap.data();
-      const status = u.status || "active";
-      if (status === "inactive") {
-        alert("Your account is deactivated. Please contact support.");
+
+      let u = uSnap.data();
+      if(u.status === "inactive"){
+        alert("Your account is deactivated. Contact support.");
         await signOut(auth);
         showLogin();
         return;
       }
-      const nm = u.name || "";
-      const mob = u.mobile || "";
-      welcomeText.innerText = `Welcome ${nm}${mob ? " (" + mob + ")" : ""}`;
-      userInfoLine.innerText = `Name: ${nm}${mob ? " | Mobile: " + mob : ""}`;
+      welcomeText.innerText=`Welcome ${u.name||"-"}${u.mobile ? " (" + u.mobile + ")" : ""}`;
+      userInfoLine.innerText = `Name: ${u.name||"-"}${u.mobile ? " | Mobile: " + u.mobile : ""}`;
       pwdLine.innerText = "Password: Hidden for security";
-      if (u.regLocation?.lat) {
-        regLocLine.innerHTML =
-          `Registered Location: <a href="${mapLink(u.regLocation.lat, u.regLocation.lng)}" target="_blank" style="color:#fff;text-decoration:underline">${fmtLoc(u.regLocation)}</a>`;
-      } else {
-        regLocLine.innerText = "Registered Location: Not allowed / Not captured";
-      }
-      const currentLocation = await getGeo();
-      if (currentLocation?.lat) {
-        curLocLine.innerHTML =
-          `Current Location: <a href="${mapLink(currentLocation.lat, currentLocation.lng)}" target="_blank" style="color:#fff;text-decoration:underline">${fmtLoc(currentLocation)}</a>`;
-        try {
-          await updateDoc(uRef, {
-            lastLocation: currentLocation,
-            lastSeenAt: serverTimestamp()
-          });
-        } catch {}
-      } else {
+      regLocLine.innerHTML = u.regLocation && u.regLocation.lat ? 
+        `Registered Location: <a href="${mapLink(u.regLocation.lat,u.regLocation.lng)}" target="_blank" style="color:#fff;text-decoration:underline">${fmtLoc(u.regLocation)}</a>` :
+        "Registered Location: Not allowed / Not captured";
+
+      let currentLocation = await getGeo();
+      if(currentLocation && currentLocation.lat){
+        curLocLine.innerHTML = `Current Location: <a href="${mapLink(currentLocation.lat,currentLocation.lng)}" target="_blank" style="color:#fff;text-decoration:underline">${fmtLoc(currentLocation)}</a>`;
+        try{
+          await updateDoc(uRef, {lastLocation: currentLocation, lastSeenAt:serverTimestamp()});
+        }catch{}
+      }else{
         curLocLine.innerText = "Current Location: Not allowed / Not captured";
       }
-    } catch (e) {
-      alert("Profile load error: " + e.message);
+      
+    }catch(e){
+      alert("Profile load error: "+e.message);
       await signOut(auth);
       showLogin();
     }
   });
+
 
   window.showLiveLocation = () => {
     if (!navigator.geolocation) {
@@ -609,11 +526,13 @@ th{font-weight:700}
       () => {
         liveLocationDisplay.innerText = "Unable to retrieve your location.";
       },
-      { enableHighAccuracy: true, timeout: 10000 }
+      { enableHighAccuracy:true, timeout:10000 }
     );
   };
 
+
   showLogin();
+
 </script>
 
 </body>
