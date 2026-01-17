@@ -1,4 +1,4 @@
-<Bilal Singarya>
+<Mohd Bilal>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -6,92 +6,83 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
 <style>
-* {box-sizing: border-box;}
-body {
-  margin: 0; font-family: Poppins; min-height: 100vh;
-  background: linear-gradient(120deg, #5f2c82, #49a09d); color: #fff;
+*{box-sizing:border-box}
+body{
+  margin:0;font-family:Poppins;min-height:100vh;
+  background:linear-gradient(120deg,#5f2c82,#49a09d);color:#fff;
 }
-.header {
-  padding: 15px 30px; display: flex; justify-content: space-between; align-items: center;
+.header{padding:15px 30px;display:flex;justify-content:space-between;align-items:center}
+.brand{font-size:22px;font-weight:700}
+.brand span{color:#ff4b2b}
+.topBtns{display:flex;gap:10px;flex-wrap:wrap}
+.topBtns button{padding:8px 16px;border:none;border-radius:6px;font-weight:600;color:#fff;cursor:pointer}
+.loginBtn{background:#ff4b2b}
+.regBtn{background:#0d6efd}
+.adminBtn{background:#e91e63;padding:8px 12px}
+.empBtn{background:#25D366}
+.helpBtn{background:#ffc107;color:#000}
+
+.main{display:flex;justify-content:center;gap:40px;padding:40px;flex-wrap:wrap}
+.profileCard{
+  width:280px;background:rgba(255,255,255,.15);
+  border-radius:20px;padding:25px;text-align:center
 }
-.brand {
-  font-size: 22px; font-weight: 700;
+.profileCard img{
+  width:120px;height:120px;border-radius:50%;
+  border:4px solid #fff;object-fit:cover
 }
-.brand span {
-  color: #ff4b2b;
+.profileCard h3{margin:15px 0 5px}
+.profileCard p{margin:5px 0;font-size:14px}
+
+.card{
+  width:420px;background:rgba(255,255,255,.15);
+  border-radius:20px;padding:30px
 }
-.topBtns {
-  display: flex; gap: 10px;
+.card h2{text-align:center;margin-bottom:20px}
+input{
+  width:100%;padding:12px;margin:10px 0;border:none;border-radius:8px
 }
-.topBtns button {
-  padding: 8px 16px; border: none; border-radius: 6px; font-weight: 600; color: #fff; cursor: pointer;
+.btnMain{
+  width:100%;padding:12px;border:none;border-radius:8px;
+  background:#ff4b2b;color:#fff;font-weight:600;cursor:pointer
 }
-.loginBtn {background: #ff4b2b;}
-.regBtn {background: #0d6efd;}
-.adminBtn {
-  background: #e91e63; padding: 8px 12px; font-weight: 600;
+.link{text-align:center;margin-top:10px;cursor:pointer;font-size:14px}
+.hidden{display:none}
+
+.tableWrap{
+  max-height:260px;overflow:auto;
+  background:rgba(0,0,0,.25);
+  border-radius:12px;padding:10px
 }
-.empBtn {background: #25D366;}
-.helpBtn {background: #ffc107; color: #000;}
-.main {
-  display: flex; justify-content: center; gap: 40px; padding: 40px;
+table{width:100%;border-collapse:collapse;color:#fff;font-size:13px;background:transparent}
+th,td{
+  padding:8px;border-bottom:1px solid rgba(255,255,255,.25);
+  text-align:left;background:transparent;color:#fff;vertical-align:top
 }
-.profileCard {
-  width: 280px; background: rgba(255,255,255,.15);
-  border-radius: 20px; padding: 25px; text-align: center;
+th{font-weight:700}
+
+.toggleBtn{
+  border:none;padding:6px 10px;border-radius:8px;color:#fff;
+  font-weight:700;cursor:pointer
 }
-.profileCard img {
-  width: 120px; height: 120px; border-radius: 50%; border: 4px solid #fff; object-fit: cover;
+.toggleBtn.active{background:#25D366}
+.toggleBtn.inactive{background:#e91e63}
+
+/* Modals */
+.modal{
+  position:fixed;inset:0;background:rgba(0,0,0,.9);
+  display:none;align-items:center;justify-content:center;flex-direction:column;z-index:999
 }
-.profileCard h3 {
-  margin: 15px 0 5px;
+.modal img{max-width:90%;max-height:80%;border-radius:12px;border:3px solid #fff}
+.modal button{
+  margin-top:20px;padding:10px 20px;border:none;border-radius:6px;
+  background:#ff4b2b;color:#fff;cursor:pointer
 }
-.profileCard p {
-  margin: 5px 0; font-size: 14px;
-}
-.card {
-  width: 420px; background: rgba(255,255,255,.15); border-radius: 20px; padding: 30px;
-}
-.card h2 {
-  text-align: center; margin-bottom: 20px;
-}
-input {
-  width: 100%; padding: 12px; margin: 10px 0; border: none; border-radius: 8px;
-}
-.btnMain {
-  width: 100%; padding: 12px; border: none; border-radius: 8px; background: #ff4b2b; color: #fff; font-weight: 600; cursor: pointer;
-}
-.link {
-  text-align: center; margin-top: 10px; cursor: pointer; font-size: 14px;
-}
-.hidden {
-  display: none;
-}
-.tableWrap {
-  max-height: 260px; overflow: auto; background: rgba(255,255,255,.10); border-radius: 12px; padding: 10px;
-}
-table {
-  width: 100%; border-collapse: collapse; color: #fff; font-size: 13px;
-}
-th, td {
-  padding: 8px; border-bottom: 1px solid rgba(255,255,255,.2); text-align: left;
-}
-small {
-  opacity: .85;
-}
-.modal {
-  position: fixed; inset: 0; background: rgba(0,0,0,.9); display: none;
-  align-items: center; justify-content: center; flex-direction: column; z-index: 999;
-}
-.modal img {
-  max-width: 90%; max-height: 80%; border-radius: 12px; border: 3px solid #fff;
-}
-.modal button {
-  margin-top: 20px; padding: 10px 20px; border: none; border-radius: 6px;
-  background: #ff4b2b; color: #fff; cursor: pointer;
-}
+.hr{border:0;border-top:1px solid rgba(255,255,255,.25);margin:14px 0}
+.small{display:block;margin-top:8px;opacity:.85;font-size:12px}
 </style>
 </head>
+
 <body>
 
 <div class="header">
@@ -107,7 +98,6 @@ small {
 
 <div class="main">
 
-  <!-- OWNER with GitHub image -->
   <div class="profileCard">
     <img src="https://raw.githubusercontent.com/bilal8766/SB-COMENY/main/bilal%20khan%20photos.jpeg" alt="Owner Image" />
     <h3>MOHD BILAL</h3>
@@ -115,59 +105,73 @@ small {
     <p>📞 9813490892</p>
   </div>
 
-  <!-- RIGHT CARD -->
   <div class="card">
+
     <div id="loginBox">
       <h2>Login</h2>
       <input id="lUser" placeholder="Email or Username" />
       <input id="lPass" type="password" placeholder="Password" />
       <button class="btnMain" onclick="login()">Login</button>
       <div class="link" onclick="showRegister()">Create Account</div>
+      <small class="small">Note: New account registration requires Mobile OTP.</small>
     </div>
 
     <div id="registerBox" class="hidden">
       <h2>Register</h2>
+      <h3 style="margin:0 0 6px">Mobile OTP (Required)</h3>
+      <input id="otpPhone" placeholder="Mobile Number (10 digits)" type="tel" />
+      <div id="recaptcha-container" style="margin:10px 0;"></div>
+      <button class="btnMain" onclick="sendOTP()">Send OTP</button>
+      <input id="otpCode" placeholder="Enter OTP" />
+      <button class="btnMain" onclick="verifyOTP()">Verify OTP</button>
+      <small class="small" id="otpStatus">Status: Not verified</small>
+      <hr class="hr" />
       <input id="rName" placeholder="Full Name" />
       <input id="rUser" placeholder="Username" />
       <input id="rEmail" placeholder="Email" />
-      <input id="rMobile" placeholder="Mobile Number (required)" type="tel" />
+      <input id="rMobile" placeholder="Verified Mobile (auto)" type="tel" readonly />
       <input id="rPass" type="password" placeholder="Password" />
-      <button class="btnMain" onclick="register()">Register</button>
+      <button class="btnMain" onclick="register()">Register (OTP Required)</button>
       <div class="link" onclick="showLogin()">Back to Login</div>
+      <small class="small">OTP works only on HTTPS (GitHub Pages OK).</small>
     </div>
 
     <div id="dashBox" class="hidden">
       <h2 id="welcomeText"></h2>
-      <div id="adminPanel" class="hidden" style="margin-top: 15px;">
-        <h3 style="margin: 10px 0">Registered Users (Latest First)</h3>
+      <div id="userInfoLine" style="margin:-10px 0 8px;opacity:.92"></div>
+      <div id="pwdLine" style="margin:-4px 0 8px;opacity:.92"></div>
+      <div id="regLocLine" style="margin:-4px 0 8px;opacity:.92"></div>
+      <div id="curLocLine" style="margin:-4px 0 12px;opacity:.92"></div>
+      <div id="adminPanel" class="hidden" style="margin-top:15px">
+        <h3 style="margin:10px 0">Registered Users (Latest First)</h3>
         <div class="tableWrap">
           <table>
             <thead>
-              <tr><th>Name</th><th>Username</th><th>Email</th><th>Mobile</th><th>Created</th></tr>
+              <tr><th>Name</th><th>Username</th><th>Email</th><th>Mobile</th><th>Status</th><th>Registered Loc</th><th>Last Seen Loc</th><th>Action</th></tr>
             </thead>
             <tbody id="usersTbody"></tbody>
           </table>
         </div>
+        <small class="small">Tip: Inactive user login block ho jayega.</small>
       </div>
       <button class="btnMain" onclick="logout()">Logout</button>
     </div>
+
   </div>
 </div>
 
-<!-- Founder modal -->
 <div class="modal" id="empModal">
   <img src="https://raw.githubusercontent.com/bilal8766/SB-COMENY/main/naseem.jpeg" alt="Founder Image" />
-  <h3>Naseem Khan – Founder</h3>
+  <h3 style="color:#fff;margin:14px 0 0">Naseem Khan – Founder</h3>
   <button onclick="closeEmployee()">Close</button>
 </div>
 
-<!-- Help modal -->
 <div class="modal" id="helpModal">
-  <div style="width:min(520px,92vw);background:rgba(255,255,255,.12);padding:18px;border-radius:14px; color:#000;">
+  <div style="width:min(520px,92vw);background:rgba(255,255,255,.12);padding:18px;border-radius:14px;color:#fff">
     <h2 style="margin:0 0 10px">Help</h2>
-    <p>Support Number: <b>9813490892</b></p>
-    <button class="btnMain" style="background:#25D366;color:#fff;" onclick="window.open('https://wa.me/919813490892','_blank')">WhatsApp</button>
-    <button style="margin-top:10px;background:#ff4b2b" class="btnMain" onclick="closeHelp()">Close</button>
+    <p style="margin:0 0 10px">Support Number: <b>9813490892</b></p>
+    <button class="btnMain" style="background:#25D366" onclick="window.open('https://wa.me/919813490892','_blank')">WhatsApp</button>
+    <button class="btnMain" style="margin-top:10px" onclick="closeHelp()">Close</button>
   </div>
 </div>
 
@@ -178,13 +182,17 @@ small {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     onAuthStateChanged,
-    signOut
+    signOut,
+    RecaptchaVerifier,
+    signInWithPhoneNumber,
+    linkWithCredential,
+    EmailAuthProvider
   } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
   import {
     getFirestore,
     doc,
-    setDoc,
     getDoc,
+    updateDoc,
     runTransaction,
     collection,
     getDocs,
@@ -210,7 +218,6 @@ small {
   const auth = getAuth(app);
   const db = getFirestore(app);
 
-  // DOM elements
   const loginBox = document.getElementById("loginBox");
   const registerBox = document.getElementById("registerBox");
   const dashBox = document.getElementById("dashBox");
@@ -218,14 +225,25 @@ small {
   const adminPanel = document.getElementById("adminPanel");
   const usersTbody = document.getElementById("usersTbody");
 
+  const userInfoLine = document.getElementById("userInfoLine");
+  const pwdLine = document.getElementById("pwdLine");
+  const regLocLine = document.getElementById("regLocLine");
+  const curLocLine = document.getElementById("curLocLine");
+
   const lUser = document.getElementById("lUser");
   const lPass = document.getElementById("lPass");
+
+  const otpPhone = document.getElementById("otpPhone");
+  const otpCode = document.getElementById("otpCode");
+  const otpStatus = document.getElementById("otpStatus");
+
   const rName = document.getElementById("rName");
   const rUser = document.getElementById("rUser");
   const rEmail = document.getElementById("rEmail");
   const rMobile = document.getElementById("rMobile");
   const rPass = document.getElementById("rPass");
 
+  // UI
   window.showLogin = () => {
     loginBox.classList.remove("hidden");
     registerBox.classList.add("hidden");
@@ -240,71 +258,76 @@ small {
     adminPanel.classList.add("hidden");
   };
 
-  window.openEmployee = () => {
-    document.getElementById("empModal").style.display = "flex";
-  };
+  window.openEmployee = () => (document.getElementById("empModal").style.display = "flex");
+  window.closeEmployee = () => (document.getElementById("empModal").style.display = "none");
+  window.openHelp = () => (document.getElementById("helpModal").style.display = "flex");
+  window.closeHelp = () => (document.getElementById("helpModal").style.display = "none");
 
-  window.closeEmployee = () => {
-    document.getElementById("empModal").style.display = "none";
-  };
+  async function getGeo() {
+    if (!("geolocation" in navigator)) return null;
+    return new Promise((resolve) =>
+      navigator.geolocation.getCurrentPosition(
+        (pos) => resolve({ lat: pos.coords.latitude, lng: pos.coords.longitude, accuracy: pos.coords.accuracy, capturedAt: new Date().toISOString() }),
+        () => resolve(null),
+        { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+      )
+    );
+  }
+  function mapLink(lat, lng) { return `https://www.google.com/maps?q=${lat},${lng}`; }
+  function fmtLoc(loc) { if (!loc || typeof loc.lat !== "number") return "-"; return `${loc.lat.toFixed(5)}, ${loc.lng.toFixed(5)}`; }
+  function fmtLocLink(loc) { if (!loc || typeof loc.lat !== "number") return "-"; return `<a href="${mapLink(loc.lat, loc.lng)}" target="_blank" style="color:#fff;text-decoration:underline">${fmtLoc(loc)}</a>`; }
 
-  window.openHelp = () => {
-    document.getElementById("helpModal").style.display = "flex";
-  };
+  let confirmationResult = null;
+  let otpVerifiedMobile = null;
 
-  window.closeHelp = () => {
-    document.getElementById("helpModal").style.display = "none";
-  };
+  function initRecaptcha() {
+    if (window.recaptchaVerifier) return;
+    window.recaptchaVerifier = new RecaptchaVerifier(auth, "recaptcha-container", { size: "normal" });
+  }
+  initRecaptcha();
 
-  window.logout = async () => {
-    await signOut(auth);
-    showLogin();
-  };
-
-  window.register = async () => {
-    const name = rName.value.trim();
-    const usernameRaw = rUser.value.trim();
-    const email = rEmail.value.trim();
-    const mobile = rMobile.value.trim();
-    const pass = rPass.value.trim();
-
-    if (!name || !usernameRaw || !email || !mobile || !pass) {
-      alert("Please fill all fields including Mobile Number.");
-      return;
-    }
-    if (!/^\d{10,}$/.test(mobile)) {
-      alert("Please enter a valid mobile number (10 or more digits).");
-      return;
-    }
-
-    const username = usernameRaw.toLowerCase();
-
+  window.sendOTP = async () => {
     try {
-      const cred = await createUserWithEmailAndPassword(auth, email, pass);
-      await runTransaction(db, async (tx) => {
-        const usernameRef = doc(db, "usernames", username);
-        const usernameSnap = await tx.get(usernameRef);
-        if (usernameSnap.exists()) throw new Error("Username already taken.");
+      initRecaptcha();
+      const phone10 = (otpPhone.value || "").trim();
+      if (!/^\d{10}$/.test(phone10)) {
+        alert("Enter valid 10 digit mobile number");
+        return;
+      }
+      const phoneE164 = "+91" + phone10;
+      confirmationResult = await signInWithPhoneNumber(auth, phoneE164, window.recaptchaVerifier);
+      otpStatus.innerText = "Status: OTP Sent";
+      alert("OTP sent!");
+    } catch (e) {
+      otpStatus.innerText = "Status: Not verified";
+      alert("OTP send failed: " + e.message);
+    }
+  };
 
-        tx.set(doc(db, "users", cred.user.uid), {
-          name,
-          username: usernameRaw,
-          usernameLower: username,
-          email,
-          mobile,
-          createdAt: serverTimestamp()
-        });
-
-        tx.set(usernameRef, {
-          uid: cred.user.uid,
-          email,
-          createdAt: serverTimestamp()
-        });
-      });
-      alert("Registered successfully!");
-      showLogin();
-    } catch (err) {
-      alert(err.message);
+  window.verifyOTP = async () => {
+    try {
+      const code = (otpCode.value || "").trim();
+      if (!confirmationResult) {
+        alert("Please send OTP first");
+        return;
+      }
+      if (!code) {
+        alert("Enter OTP");
+        return;
+      }
+      const cred = await confirmationResult.confirm(code);
+      const phoneE164 = cred.user?.phoneNumber || null;
+      if (!phoneE164) {
+        alert("Phone verification failed");
+        return;
+      }
+      otpVerifiedMobile = phoneE164.replace("+91", "");
+      rMobile.value = otpVerifiedMobile;
+      otpStatus.innerText = "Status: Verified (" + otpVerifiedMobile + ")";
+      alert("OTP verified!");
+    } catch (e) {
+      otpStatus.innerText = "Status: Not verified";
+      alert("OTP verify failed: " + e.message);
     }
   };
 
@@ -313,86 +336,238 @@ small {
     const pass = lPass.value.trim();
 
     if (!input || !pass) {
-      alert("Enter Email or Username and Password.");
+      alert("Enter Email/Username + Password");
       return;
     }
+
     try {
       let emailToUse = input;
       if (!input.includes("@")) {
-        const username = input.toLowerCase();
-        const snap = await getDoc(doc(db, "usernames", username));
+        const uname = input.toLowerCase();
+        const snap = await getDoc(doc(db, "usernames", uname));
         if (!snap.exists()) {
-          alert("Username not found.");
+          alert("Username not found");
           return;
         }
         emailToUse = snap.data().email;
       }
       await signInWithEmailAndPassword(auth, emailToUse, pass);
-    } catch (err) {
-      alert("Login failed: " + err.message);
+    } catch (e) {
+      alert("Login failed: " + e.message);
     }
   };
 
-  async function loadAllUsersForAdmin() {
-    usersTbody.innerHTML = `<tr><td colspan="5">Loading...</td></tr>`;
-    const q = query(collection(db, "users"), orderBy("createdAt", "desc"));
-    const snap = await getDocs(q);
-    if (snap.empty) {
-      usersTbody.innerHTML = `<tr><td colspan="5">No registered users found.</td></tr>`;
+  window.register = async () => {
+    const name = rName.value.trim();
+    const usernameRaw = rUser.value.trim();
+    const email = rEmail.value.trim();
+    const pass = rPass.value.trim();
+
+    if (!otpVerifiedMobile) {
+      alert("OTP verification required. Please verify mobile first.");
       return;
     }
+    if (!name || !usernameRaw || !email || !pass) {
+      alert("Please fill all fields.");
+      return;
+    }
+    const username = usernameRaw.toLowerCase();
+    try {
+      const regLocation = await getGeo();
+      const emailCred = EmailAuthProvider.credential(email, pass);
+      await linkWithCredential(auth.currentUser, emailCred);
+      await runTransaction(db, async (tx) => {
+        const usernameRef = doc(db, "usernames", username);
+        const usernameSnap = await tx.get(usernameRef);
+        if (usernameSnap.exists()) throw new Error("Username already taken.");
+        tx.set(doc(db, "users", auth.currentUser.uid), {
+          name,
+          username: usernameRaw,
+          usernameLower: username,
+          email,
+          mobile: otpVerifiedMobile,
+          status: "active",
+          regLocation: regLocation || null,
+          lastLocation: regLocation || null,
+          lastSeenAt: serverTimestamp(),
+          createdAt: serverTimestamp()
+        });
+        tx.set(usernameRef, {
+          uid: auth.currentUser.uid,
+          email,
+          createdAt: serverTimestamp()
+        });
+      });
+      alert("Registered successfully!");
+      confirmationResult = null;
+      otpVerifiedMobile = null;
+      otpStatus.innerText = "Status: Not verified";
+      otpPhone.value = "";
+      otpCode.value = "";
+      rMobile.value = "";
+      showLogin();
+    } catch (e) {
+      alert("Register failed: " + e.message);
+    }
+  };
 
+  window.logout = async () => {
+    await signOut(auth);
+    confirmationResult = null;
+    otpVerifiedMobile = null;
+    otpStatus.innerText = "Status: Not verified";
+    otpPhone.value = "";
+    otpCode.value = "";
+    rMobile.value = "";
+    showLogin();
+  };
+
+  async function loadAllUsersForAdmin() {
+    usersTbody.innerHTML = `<tr><td colspan="8"><small>Loading...</small></td></tr>`;
+    const qy = query(collection(db, "users"), orderBy("createdAt", "desc"));
+    const snap = await getDocs(qy);
+    if (snap.empty) {
+      usersTbody.innerHTML = `<tr><td colspan="8"><small>No users found.</small></td></tr>`;
+      return;
+    }
     usersTbody.innerHTML = "";
     snap.forEach((d) => {
       const u = d.data();
-      const created = u.createdAt?.toDate ? u.createdAt.toDate().toLocaleString() : "-";
+      const status = u.status || "active";
       const tr = document.createElement("tr");
-      tr.innerHTML = `<td>${u.name || "-"}</td><td>${u.username || "-"}</td><td>${u.email || "-"}</td><td>${u.mobile || "-"}</td><td>${created}</td>`;
+      tr.innerHTML = `
+        <td>${u.name || "-"}</td>
+        <td>${u.username || "-"}</td>
+        <td>${u.email || "-"}</td>
+        <td>${u.mobile || "-"}</td>
+        <td data-col="status">${status}</td>
+        <td>${fmtLocLink(u.regLocation)}</td>
+        <td>${fmtLocLink(u.lastLocation)}</td>
+        <td>
+          <button class="toggleBtn ${status === "inactive" ? "inactive" : "active"}"
+                  data-uid="${d.id}" data-status="${status}">
+            ${status === "active" ? "Deactivate" : "Activate"}
+          </button>
+        </td>
+      `;
       usersTbody.appendChild(tr);
     });
   }
 
-  onAuthStateChanged(auth, async (user) => {
-    if (!user) {
-      adminPanel.classList.add("hidden");
-      dashBox.classList.add("hidden");
-      showLogin();
-      return;
-    }
-
-    loginBox.classList.add("hidden");
-    registerBox.classList.add("hidden");
-    dashBox.classList.remove("hidden");
-
-    if (user.uid === ADMIN_UID) {
-      welcomeText.innerText = "Admin Dashboard";
-      adminPanel.classList.remove("hidden");
-      await loadAllUsersForAdmin();
-    } else {
-      welcomeText.innerText = "Welcome " + (user.email || "");
-      adminPanel.classList.add("hidden");
+  usersTbody.addEventListener("click", async (e) => {
+    const btn = e.target.closest(".toggleBtn");
+    if (!btn) return;
+    const uid = btn.dataset.uid;
+    const current = btn.dataset.status;
+    const next = current === "active" ? "inactive" : "active";
+    try {
+      await updateDoc(doc(db, "users", uid), { status: next });
+      btn.dataset.status = next;
+      btn.textContent = next === "active" ? "Deactivate" : "Activate";
+      btn.classList.toggle("inactive", next === "inactive");
+      btn.classList.toggle("active", next === "active");
+      btn.closest("tr").querySelector('td[data-col="status"]').textContent = next;
+    } catch (err) {
+      alert("Failed: " + err.message);
     }
   });
 
   window.goToAdminDashboard = async () => {
     const user = auth.currentUser;
     if (!user) {
-      alert("Please login first with Admin credentials.");
+      alert("Please login first with Admin account.");
       showLogin();
       return;
     }
     if (user.uid === ADMIN_UID) {
-      adminPanel.classList.remove("hidden");
-      dashBox.classList.remove("hidden");
       loginBox.classList.add("hidden");
       registerBox.classList.add("hidden");
+      dashBox.classList.remove("hidden");
       welcomeText.innerText = "Admin Dashboard";
+      adminPanel.classList.remove("hidden");
+      userInfoLine.innerText = "";
+      pwdLine.innerText = "";
+      regLocLine.innerText = "";
+      curLocLine.innerText = "";
       await loadAllUsersForAdmin();
-      alert("Welcome Admin, Dashboard opened.");
     } else {
       alert("You are not authorized as admin.");
     }
   };
+
+  onAuthStateChanged(auth, async (user) => {
+    if (!user) {
+      showLogin();
+      return;
+    }
+    if (user.uid === ADMIN_UID) {
+      loginBox.classList.add("hidden");
+      registerBox.classList.add("hidden");
+      dashBox.classList.remove("hidden");
+      welcomeText.innerText = "Admin Dashboard";
+      adminPanel.classList.remove("hidden");
+      userInfoLine.innerText = "";
+      pwdLine.innerText = "";
+      regLocLine.innerText = "";
+      curLocLine.innerText = "";
+      await loadAllUsersForAdmin();
+      return;
+    }
+    try {
+      const uRef = doc(db, "users", user.uid);
+      const uSnap = await getDoc(uRef);
+      loginBox.classList.add("hidden");
+      registerBox.classList.add("hidden");
+      dashBox.classList.remove("hidden");
+      adminPanel.classList.add("hidden");
+      if (!uSnap.exists()) {
+        welcomeText.innerText = "Welcome " + (user.email || user.phoneNumber || "");
+        userInfoLine.innerText = "";
+        pwdLine.innerText = "Password: Hidden for security";
+        regLocLine.innerText = "Registered Location: -";
+        curLocLine.innerText = "Current Location: -";
+        return;
+      }
+      const u = uSnap.data();
+      const status = u.status || "active";
+      if (status === "inactive") {
+        alert("Your account is deactivated. Please contact support.");
+        await signOut(auth);
+        showLogin();
+        return;
+      }
+      const nm = u.name || "";
+      const mob = u.mobile || "";
+      welcomeText.innerText = `Welcome ${nm}${mob ? " (" + mob + ")" : ""}`;
+      userInfoLine.innerText = `Name: ${nm}${mob ? " | Mobile: " + mob : ""}`;
+      pwdLine.innerText = "Password: Hidden for security";
+      if (u.regLocation?.lat) {
+        regLocLine.innerHTML =
+          `Registered Location: <a href="${mapLink(u.regLocation.lat, u.regLocation.lng)}" target="_blank" style="color:#fff;text-decoration:underline">${fmtLoc(u.regLocation)}</a>`;
+      } else {
+        regLocLine.innerText = "Registered Location: Not allowed / Not captured";
+      }
+      const currentLocation = await getGeo();
+      if (currentLocation?.lat) {
+        curLocLine.innerHTML =
+          `Current Location: <a href="${mapLink(currentLocation.lat, currentLocation.lng)}" target="_blank" style="color:#fff;text-decoration:underline">${fmtLoc(currentLocation)}</a>`;
+        try {
+          await updateDoc(uRef, {
+            lastLocation: currentLocation,
+            lastSeenAt: serverTimestamp()
+          });
+        } catch {}
+      } else {
+        curLocLine.innerText = "Current Location: Not allowed / Not captured";
+      }
+    } catch (e) {
+      alert("Profile load error: " + e.message);
+      await signOut(auth);
+      showLogin();
+    }
+  });
+
+  showLogin();
 </script>
 
 </body>
