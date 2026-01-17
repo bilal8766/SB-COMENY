@@ -6,158 +6,181 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
 <style>
-/* Aap apna pehla CSS yahan laga sakte hain (jo maine pehle diya tha) */
 *{box-sizing:border-box}
 body{
   margin:0;font-family:Poppins;min-height:100vh;
-  background:linear-gradient(120deg,#5f2c82,#49a09d);color:#fff;padding:20px;
-  display:flex;justify-content:center;align-items:flex-start
+  background:linear-gradient(120deg,#5f2c82,#49a09d);color:#fff;
 }
-.profileCard {
+.header{padding:15px 30px;display:flex;justify-content:space-between;align-items:center}
+.brand{font-size:22px;font-weight:700}
+.brand span{color:#ff4b2b}
+.topBtns{display:flex;gap:10px;flex-wrap:wrap}
+.topBtns button{padding:8px 16px;border:none;border-radius:6px;font-weight:600;color:#fff;cursor:pointer}
+.loginBtn{background:#ff4b2b}
+.regBtn{background:#0d6efd}
+.adminBtn{background:#e91e63;padding:8px 12px}
+.empBtn{background:#25D366}
+.helpBtn{background:#ffc107;color:#000}
+
+.main{display:flex;justify-content:center;gap:40px;padding:40px;flex-wrap:wrap}
+.profileCard{
   width:280px;background:rgba(255,255,255,.15);
-  border-radius:20px;padding:25px;text-align:center;margin-right:40px
+  border-radius:20px;padding:25px;text-align:center
 }
-.profileCard img {
+.profileCard img{
   width:120px;height:120px;border-radius:50%;
   border:4px solid #fff;object-fit:cover
 }
-.card {
+.profileCard h3{margin:15px 0 5px}
+.profileCard p{margin:5px 0;font-size:14px}
+
+.card{
   width:420px;background:rgba(255,255,255,.15);
-  border-radius:20px;padding:30px;max-height:80vh;overflow-y:auto;
+  border-radius:20px;padding:30px
 }
-h2 {
-  text-align:center;margin-bottom:20px
+.card h2{text-align:center;margin-bottom:20px}
+input{
+  width:100%;padding:12px;margin:10px 0;border:none;border-radius:8px
 }
-input, select, textarea {
-  width:100%;padding:12px;margin:10px 0;border:none;border-radius:8px;
-  font-family:Poppins
+.btnMain{
+  width:100%;padding:12px;border:none;border-radius:8px;
+  background:#ff4b2b;color:#fff;font-weight:600;cursor:pointer
 }
-textarea {
-  resize: vertical;
-  min-height: 80px;
+.link{text-align:center;margin-top:10px;cursor:pointer;font-size:14px}
+.hidden{display:none}
+
+.tableWrap{
+  max-height:260px;overflow:auto;
+  background:rgba(0,0,0,.25);
+  border-radius:12px;padding:10px
 }
-.btnMain {
-  width:100%;padding:12px;border:none;border-radius:8px;background:#ff4b2b;color:#fff;font-weight:600;cursor:pointer;
-  font-family:Poppins
+table{width:100%;border-collapse:collapse;color:#fff;font-size:13px;background:transparent}
+th,td{
+  padding:8px;border-bottom:1px solid rgba(255,255,255,.25);
+  text-align:left;background:transparent;color:#fff;vertical-align:top
 }
-.link {
-  text-align:center;margin-top:10px;cursor:pointer;font-size:14px;
-}
-.hidden {display:none;}
-.tableWrap {
-  max-height:260px;overflow-y:auto;background:rgba(0,0,0,.25);
-  border-radius:12px;padding:10px;margin-top:20px;
-}
-table {
-  width:100%;border-collapse:collapse;color:#fff;font-size:13px;background:transparent
-}
-th, td {
-  padding:8px 12px;border-bottom:1px solid rgba(255,255,255,.25);
-  text-align:left;vertical-align:top
-}
-th {font-weight:700;}
-.toggleBtn {
+th{font-weight:700}
+
+.toggleBtn{
   border:none;padding:6px 10px;border-radius:8px;color:#fff;
-  font-weight:700;cursor:pointer;
+  font-weight:700;cursor:pointer
 }
-.toggleBtn.active {
-  background:#25D366;
+.toggleBtn.active{background:#25D366}
+.toggleBtn.inactive{background:#e91e63}
+
+/* Modals */
+.modal{
+  position:fixed;inset:0;background:rgba(0,0,0,.9);
+  display:none;align-items:center;justify-content:center;flex-direction:column;z-index:999
 }
-.toggleBtn.inactive {
-  background:#e91e63;
+.modal img{max-width:90%;max-height:80%;border-radius:12px;border:3px solid #fff}
+.modal button{
+  margin-top:20px;padding:10px 20px;border:none;border-radius:6px;
+  background:#ff4b2b;color:#fff;cursor:pointer
 }
-.small {
-  margin-top:8px;opacity:.85;font-size:12px;
-}
+hr{border:0;border-top:1px solid rgba(255,255,255,.25);margin:14px 0}
+.small{display:block;margin-top:8px;opacity:.85;font-size:12px}
 </style>
 </head>
 
 <body>
 
-<!-- Owner Card -->
-<div class="profileCard">
-  <img src="https://raw.githubusercontent.com/bilal8766/SB-COMENY/main/bilal%20khan%20photos.jpeg" alt="Owner Image" />
-  <h3>MOHD BILAL</h3>
-  <p>Owner</p>
-  <p>📞 9813490892</p>
+<div class="header">
+  <div class="brand">SB <span>COMENY</span></div>
+  <div class="topBtns">
+    <button class="loginBtn" onclick="showLogin()">Login</button>
+    <button class="regBtn" onclick="showRegister()">Register</button>
+    <button class="adminBtn" onclick="goToAdminDashboard()">Admin</button>
+    <button class="empBtn" onclick="openEmployee()">Employee</button>
+    <button class="helpBtn" onclick="openHelp()">Help</button>
+  </div>
 </div>
 
-<!-- Main Card with Login/Register/Dashboard -->
-<div class="card">
+<div class="main">
 
-  <div id="loginBox">
-    <h2>Login</h2>
-    <input id="lUser" placeholder="Email or Username" />
-    <input id="lPass" type="password" placeholder="Password" />
-    <button class="btnMain" onclick="login()">Login</button>
-    <div class="link" onclick="showRegister()">Create Account</div>
+  <div class="profileCard">
+    <img src="https://raw.githubusercontent.com/bilal8766/SB-COMENY/main/bilal%20khan%20photos.jpeg" alt="Owner Image" />
+    <h3>MOHD BILAL</h3>
+    <p>Owner</p>
+    <p>📞 9813490892</p>
   </div>
 
-  <div id="registerBox" class="hidden">
-    <h2>Register</h2>
-    <input id="rName" placeholder="Full Name" />
-    <input id="rUser" placeholder="Username" />
-    <input id="rEmail" placeholder="Email" />
-    <input id="rMobile" placeholder="Mobile Number (required)" type="tel" />
-    <input id="rPass" type="password" placeholder="Password" />
-    <button class="btnMain" onclick="register()">Register</button>
-    <div class="link" onclick="showLogin()">Back to Login</div>
-  </div>
+  <div class="card">
 
-  <div id="dashBox" class="hidden">
-    <h2 id="welcomeText"></h2>
-
-    <!-- CUSTOMER SERVICE SECTION -->
-    <div id="customerServiceSection" style="display:none;">
-      <label for="serviceSelect">Select Service:</label>
-      <select id="serviceSelect">
-        <option value="">-- Choose Service --</option>
-        <option value="Service 1">Service 1</option>
-        <option value="Service 2">Service 2</option>
-        <option value="Service 3">Service 3</option>
-      </select>
-      <label for="customerDescription" style="margin-top:10px; display:block;">Description:</label>
-      <textarea id="customerDescription" placeholder="Describe your request..."></textarea>
-      <button class="btnMain" style="margin-top:10px;" onclick="submitCustomerRequest()">Send Request</button>
-      <div id="requestStatus" class="small"></div>
+    <div id="loginBox">
+      <h2>Login</h2>
+      <input id="lUser" placeholder="Email or Username" />
+      <input id="lPass" type="password" placeholder="Password" />
+      <button class="btnMain" onclick="login()">Login</button>
+      <div class="link" onclick="showRegister()">Create Account</div>
     </div>
 
-    <button id="liveLocationBtn" class="btnMain" style="margin-top:15px;display:none;" onclick="showLiveLocation()">Show Live Location</button>
-    <div class="infoLine" id="liveLocationDisplay" style="margin-bottom:15px;"></div>
-
-    <!-- Customer Info lines without sensitive details -->
-    <div id="userInfoLine" class="infoLine"></div>
-    <div id="pwdLine" class="infoLine"></div>
-    <div id="regLocLine" class="infoLine"></div>
-    <div id="curLocLine" class="infoLine"></div>
-
-    <!-- ADMIN PANEL -->
-    <div id="adminPanel" class="hidden">
-      <h3>Registered Users (Latest First)</h3>
-      <div class="tableWrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th><th>Username</th><th>Email</th><th>Mobile</th><th>Status</th><th>Registered Loc</th><th>Last Seen Loc</th><th>Action</th>
-            </tr>
-          </thead>
-          <tbody id="usersTbody"></tbody>
-        </table>
-      </div>
-      <h3 style="margin-top:20px;">Customer Requests</h3>
-      <div class="tableWrap" style="max-height:180px; overflow-y:auto;">
-        <table>
-          <thead>
-            <tr><th>Customer Name</th><th>Mobile</th><th>Service</th><th>Description</th><th>Time</th></tr>
-          </thead>
-          <tbody id="customerRequestsTbody"></tbody>
-        </table>
-      </div>
+    <div id="registerBox" class="hidden">
+      <h2>Register</h2>
+      <input id="rName" placeholder="Full Name" />
+      <input id="rUser" placeholder="Username" />
+      <input id="rEmail" placeholder="Email" />
+      <input id="rMobile" placeholder="Mobile Number (required)" type="tel" />
+      <input id="rPass" type="password" placeholder="Password" />
+      <button class="btnMain" onclick="register()">Register</button>
+      <div class="link" onclick="showLogin()">Back to Login</div>
     </div>
 
-    <button class="btnMain" onclick="logout()" style="margin-top:20px;">Logout</button>
-  </div>
+    <div id="dashBox" class="hidden">
+      <h2 id="welcomeText"></h2>
 
+      <button onclick="showLiveLocation()" style="background:#0d6efd;color:#fff;padding:8px 16px;border:none;border-radius:8px;cursor:pointer;margin:8px 0;">
+        Show Live Location
+      </button>
+      <div id="liveLocationDisplay" style="margin-top:8px; font-size:14px; opacity:0.85;"></div>
+
+      <div id="userInfoLine" style="margin:-10px 0 8px;opacity:.92"></div>
+      <div id="pwdLine" style="margin:-4px 0 8px;opacity:.92"></div>
+      <div id="regLocLine" style="margin:-4px 0 8px;opacity:.92"></div>
+      <div id="curLocLine" style="margin:-4px 0 12px;opacity:.92"></div>
+
+      <div id="adminPanel" class="hidden" style="margin-top:15px">
+        <h3 style="margin:10px 0">Registered Users (Latest First)</h3>
+        <div class="tableWrap">
+          <table>
+              <thead>
+                  <tr>
+                      <th>Name</th>
+                      <th>Username</th>
+                      <th>Email</th>
+                      <th>Mobile</th>
+                      <th>Status</th>
+                      <th>Registered Loc</th>
+                      <th>Last Seen Loc</th>
+                      <th>Action</th>
+                  </tr>
+              </thead>
+              <tbody id="usersTbody">
+              </tbody>
+          </table>
+        </div>
+        <small class="small">Tip: Inactive user login block ho jayega.</small>
+      </div>
+
+      <button class="btnMain" onclick="logout()">Logout</button>
+    </div>
+
+  </div>
+</div>
+
+<div class="modal" id="empModal">
+  <img src="https://raw.githubusercontent.com/bilal8766/SB-COMENY/main/naseem.jpeg" alt="Founder Image" />
+  <h3 style="color:#fff;margin:14px 0 0">Naseem Khan – Founder</h3>
+  <button onclick="closeEmployee()">Close</button>
+</div>
+
+<div class="modal" id="helpModal">
+  <div style="width:min(520px,92vw);background:rgba(255,255,255,.12);padding:18px;border-radius:14px;color:#fff">
+    <h2 style="margin:0 0 10px">Help</h2>
+    <p>Support Number: <b>9813490892</b></p>
+    <button class="btnMain" style="background:#25D366" onclick="window.open('https://wa.me/919813490892','_blank')">WhatsApp</button>
+    <button class="btnMain" style="margin-top:10px" onclick="closeHelp()">Close</button>
+  </div>
 </div>
 
 <script type="module">
@@ -167,7 +190,7 @@ th {font-weight:700;}
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     onAuthStateChanged,
-    signOut,
+    signOut
   } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
   import {
     getFirestore,
@@ -179,8 +202,7 @@ th {font-weight:700;}
     getDocs,
     query,
     orderBy,
-    serverTimestamp,
-    addDoc,
+    serverTimestamp
   } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
   const firebaseConfig = {
@@ -200,6 +222,7 @@ th {font-weight:700;}
   const auth = getAuth(app);
   const db = getFirestore(app);
 
+  // DOM Elements
   const loginBox = document.getElementById("loginBox");
   const registerBox = document.getElementById("registerBox");
   const dashBox = document.getElementById("dashBox");
@@ -210,78 +233,85 @@ th {font-weight:700;}
   const pwdLine = document.getElementById("pwdLine");
   const regLocLine = document.getElementById("regLocLine");
   const curLocLine = document.getElementById("curLocLine");
-  const liveLocationBtn = document.getElementById("liveLocationBtn");
   const liveLocationDisplay = document.getElementById("liveLocationDisplay");
+  const lUser = document.getElementById("lUser");
+  const lPass = document.getElementById("lPass");
+  const rName = document.getElementById("rName");
+  const rUser = document.getElementById("rUser");
+  const rEmail = document.getElementById("rEmail");
+  const rMobile = document.getElementById("rMobile");
+  const rPass = document.getElementById("rPass");
 
-  const serviceSelect = document.getElementById("serviceSelect");
-  const customerDescription = document.getElementById("customerDescription");
-  const requestStatus = document.getElementById("requestStatus");
-  const customerServiceSection = document.getElementById("customerServiceSection");
-  const customerRequestsTbody = document.getElementById("customerRequestsTbody");
-
-  function mapLink(lat,lng) {
-    return `https://www.google.com/maps?q=${lat},${lng}`;
-  }
-  function fmtLoc(loc) {
-    if(!loc || typeof loc.lat !== 'number') return '-';
-    return `${loc.lat.toFixed(5)}, ${loc.lng.toFixed(5)}`;
-  }
-  function fmtLocLink(loc) {
-    if(!loc || typeof loc.lat !== 'number') return '-';
-    const url = mapLink(loc.lat, loc.lng);
-    const text = fmtLoc(loc);
-    return `<a href="${url}" target="_blank" style="color:#abd6ff;text-decoration:underline">${text}</a>`;
-  }
-  async function getGeo() {
-    if(!"geolocation" in navigator) return null;
-    return new Promise((resolve) => {
-      navigator.geolocation.getCurrentPosition(
-        (pos)=>resolve({lat:pos.coords.latitude,lng:pos.coords.longitude}),
-        ()=>resolve(null),
-        {enableHighAccuracy:true,timeout:10000,maximumAge:0});
-    });
-  }
-
+  // Helpers for UI & location
   window.showLogin = () => {
     loginBox.classList.remove("hidden");
     registerBox.classList.add("hidden");
     dashBox.classList.add("hidden");
     adminPanel.classList.add("hidden");
-    liveLocationDisplay.innerText="";
-    customerServiceSection.style.display = "none";
+    liveLocationDisplay.innerText = "";
   };
+
   window.showRegister = () => {
     loginBox.classList.add("hidden");
     registerBox.classList.remove("hidden");
     dashBox.classList.add("hidden");
     adminPanel.classList.add("hidden");
-    liveLocationDisplay.innerText="";
+    liveLocationDisplay.innerText = "";
   };
 
-  window.logout = async () => {
-    await signOut(auth);
-    showLogin();
-  };
+  window.openEmployee = () => (document.getElementById("empModal").style.display = "flex");
+  window.closeEmployee = () => (document.getElementById("empModal").style.display = "none");
+  window.openHelp = () => (document.getElementById("helpModal").style.display = "flex");
+  window.closeHelp = () => (document.getElementById("helpModal").style.display = "none");
+
+  async function getGeo() {
+    if (!("geolocation" in navigator)) return null;
+    return new Promise((resolve) =>
+      navigator.geolocation.getCurrentPosition(
+        (pos) => resolve({ lat: pos.coords.latitude, lng: pos.coords.longitude }),
+        () => resolve(null),
+        { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+      )
+    );
+  }
+  function mapLink(lat, lng) {
+    return `https://www.google.com/maps?q=${lat},${lng}`;
+  }
+  function fmtLoc(loc) {
+    if (!loc || typeof loc.lat !== "number") return "-";
+    return `${loc.lat.toFixed(5)}, ${loc.lng.toFixed(5)}`;
+  }
+  function fmtLocLink(loc) {
+    if (!loc || typeof loc.lat !== "number") return "-";
+    const url = mapLink(loc.lat, loc.lng);
+    const text = fmtLoc(loc);
+    return `<a href="${url}" target="_blank" style="color:#fff;text-decoration:underline">${text}</a>`;
+  }
+
+  window.sendOTP = () => alert("OTP disabled in this version");
+
+  window.verifyOTP = () => alert("OTP disabled in this version");
 
   window.login = async () => {
     const input = lUser.value.trim();
     const pass = lPass.value.trim();
-    if(!input || !pass) {
-      alert("Please enter Email/Username and Password");
+    if (!input || !pass) {
+      alert("Enter Email or Username and Password");
       return;
     }
     try {
       let emailToUse = input;
       if (!input.includes("@")) {
-        const snap = await getDoc(doc(db,"usernames",input.toLowerCase()));
-        if(!snap.exists()) {
+        const uname = input.toLowerCase();
+        const snap = await getDoc(doc(db, "usernames", uname));
+        if (!snap.exists()) {
           alert("Username not found");
           return;
         }
         emailToUse = snap.data().email;
       }
-      await signInWithEmailAndPassword(auth,emailToUse,pass);
-    } catch(e) {
+      await signInWithEmailAndPassword(auth, emailToUse, pass);
+    } catch (e) {
       alert("Login failed: " + e.message);
     }
   };
@@ -292,35 +322,35 @@ th {font-weight:700;}
     const email = rEmail.value.trim();
     const mobile = rMobile.value.trim();
     const pass = rPass.value.trim();
-    if(!name || !usernameRaw || !email || !mobile || !pass) {
-      alert("Please fill all fields");
+    if (!name || !usernameRaw || !email || !mobile || !pass) {
+      alert("Please fill all fields.");
       return;
     }
-    if(!/^\d{10}$/.test(mobile)){
-      alert("Mobile number must be 10 digits.");
+    if (!/^\d{10}$/.test(mobile)) {
+      alert("Mobile number should be 10 digits.");
       return;
     }
     const username = usernameRaw.toLowerCase();
     try {
       const regLocation = await getGeo();
-      const cred = await createUserWithEmailAndPassword(auth,email,pass);
-      await runTransaction(db, async(tx)=>{
-        const usernameRef = doc(db,"usernames",username);
+      const cred = await createUserWithEmailAndPassword(auth, email, pass);
+      await runTransaction(db, async (tx) => {
+        const usernameRef = doc(db, "usernames", username);
         const usernameSnap = await tx.get(usernameRef);
-        if(usernameSnap.exists()) throw new Error("Username taken");
-        tx.set(doc(db,"users",cred.user.uid),{
+        if (usernameSnap.exists()) throw new Error("Username already taken.");
+        tx.set(doc(db, "users", cred.user.uid), {
           name,
           username: usernameRaw,
           usernameLower: username,
           email,
           mobile,
-          status:"active",
+          status: "active",
           regLocation: regLocation || null,
           lastLocation: regLocation || null,
           lastSeenAt: serverTimestamp(),
           createdAt: serverTimestamp()
         });
-        tx.set(usernameRef,{
+        tx.set(usernameRef, {
           uid: cred.user.uid,
           email,
           createdAt: serverTimestamp()
@@ -328,25 +358,30 @@ th {font-weight:700;}
       });
       alert("Registered successfully!");
       showLogin();
-    } catch(e){
-      alert("Registration error: "+ e.message);
+    } catch (e) {
+      alert("Register failed: " + e.message);
     }
   };
 
+  window.logout = async () => {
+    await signOut(auth);
+    showLogin();
+  };
+
   async function loadAllUsersForAdmin() {
-    usersTbody.innerHTML = `<tr><td colspan="8" style="text-align:center;">Loading...</td></tr>`;
-    const q = query(collection(db,"users"),orderBy("createdAt","desc"));
+    usersTbody.innerHTML = `<tr><td colspan="8" style="text-align:center">Loading...</td></tr>`;
+    const q = query(collection(db, "users"), orderBy("createdAt", "desc"));
     const snap = await getDocs(q);
-    if(snap.empty){
-      usersTbody.innerHTML = `<tr><td colspan="8" style="text-align:center;">No users found.</td></tr>`;
+    if (snap.empty) {
+      usersTbody.innerHTML = `<tr><td colspan="8" style="text-align:center">No users found.</td></tr>`;
       return;
     }
-    usersTbody.innerHTML="";
-    snap.forEach((docSnap)=>{
-      const u=docSnap.data();
+    usersTbody.innerHTML = "";
+    snap.forEach((d) => {
+      const u = d.data();
       const status = u.status || "active";
-      const tr=document.createElement("tr");
-      tr.innerHTML=`
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
         <td>${u.name||"-"}</td>
         <td>${u.username||"-"}</td>
         <td>${u.email||"-"}</td>
@@ -355,175 +390,149 @@ th {font-weight:700;}
         <td>${fmtLocLink(u.regLocation)}</td>
         <td>${fmtLocLink(u.lastLocation)}</td>
         <td>
-          <button class="toggleBtn ${status==="inactive"?"inactive":"active"}" data-uid="${docSnap.id}" data-status="${status}">
-            ${status==="active"?"Deactivate":"Activate"}
+          <button class="toggleBtn ${status==="inactive" ? "inactive":"active"}"
+            data-uid="${d.id}" data-status="${status}">
+            ${status==="active" ? "Deactivate" : "Activate"}
           </button>
-        </td>
-      `;
+        </td>       
+        `;
       usersTbody.appendChild(tr);
     });
   }
 
-  usersTbody.addEventListener("click",async(e)=>{
-    const btn=e.target.closest(".toggleBtn");
-    if(!btn)return;
-    const uid=btn.dataset.uid;
-    const current=btn.dataset.status;
-    const next=current==="active"?"inactive":"active";
-    try{
-      await updateDoc(doc(db,"users",uid),{status:next});
-      btn.dataset.status=next;
-      btn.textContent=next==="active"?"Deactivate":"Activate";
-      btn.classList.toggle("inactive",next==="inactive");
-      btn.classList.toggle("active",next==="active");
-      btn.closest("tr").querySelector('td[data-col="status"]').textContent=next;
-    }catch(err){
-      alert("Failed: "+err.message);
+  usersTbody.addEventListener("click", async (e)=>{
+    const btn = e.target.closest(".toggleBtn");
+    if(!btn) return;
+    const uid = btn.dataset.uid;
+    const current = btn.dataset.status;
+    const next = current === "active" ? "inactive" : "active";
+    try {
+      await updateDoc(doc(db, "users", uid), { status: next });
+      btn.dataset.status = next;
+      btn.textContent = next === "active" ? "Deactivate" : "Activate";
+      btn.classList.toggle("inactive", next==="inactive");
+      btn.classList.toggle("active", next==="active");
+      btn.closest("tr").querySelector('td[data-col="status"]').textContent = next;
+    } catch(e) {
+      alert("Failed: "+ e.message);
     }
   });
 
-  async function loadCustomerRequests(){
-    customerRequestsTbody.innerHTML = `<tr><td colspan="5" style="text-align:center;color:#fff;">Loading...</td></tr>`;
-    const q=query(collection(db,"customerRequests"),orderBy("createdAt","desc"));
-    const snap=await getDocs(q);
-    if(snap.empty){
-      customerRequestsTbody.innerHTML = `<tr><td colspan="5" style="text-align:center;color:#fff;">No requests found.</td></tr>`;
+  window.goToAdminDashboard = async () => {
+    let user = auth.currentUser;
+    if(!user){
+      alert("Please login first with Admin account.");
+      showLogin();
       return;
     }
-    customerRequestsTbody.innerHTML="";
-    snap.forEach(docSnap=>{
-      const req=docSnap.data();
-      const date=req.createdAt?.toDate?req.createdAt.toDate().toLocaleString():"-";
-      const tr=document.createElement("tr");
-      tr.innerHTML=`
-      <td>${req.name||'-'}</td>
-      <td>${req.mobile||'-'}</td>
-      <td>${req.service||'-'}</td>
-      <td>${req.description||'-'}</td>
-      <td>${date}</td>
-      `;
-      customerRequestsTbody.appendChild(tr);
-    });
-  }
-
-  async function submitCustomerRequest(){
-    const service = serviceSelect.value;
-    const description = customerDescription.value.trim();
-    const user = auth.currentUser;
-    if (!user) { alert("Please login."); return; }
-    if (!service) { alert("Select service."); return; }
-    if (!description) { alert("Enter description."); return; }
-    const uDoc = await getDoc(doc(db,"users",user.uid));
-    if (!uDoc.exists()) { alert("User profile missing."); return; }
-    const uData = uDoc.data();
-    try {
-      await addDoc(collection(db,"customerRequests"),{
-        uid: user.uid,
-        name: uData.name,
-        mobile: uData.mobile,
-        service,
-        description,
-        createdAt: serverTimestamp()
-      });
-      requestStatus.style.color = "#a2f5a2";
-      requestStatus.innerText = "Request submitted.";
-      serviceSelect.value = "";
-      customerDescription.value = "";
-    } catch(e){
-      requestStatus.style.color = "#ffbaba";
-      requestStatus.innerText = "Submit failed: "+e.message;
-    }
-  }
-  window.submitCustomerRequest = submitCustomerRequest;
-
-  onAuthStateChanged(auth, async user=>{
-    if(!user){showLogin();return;}
-    if(user.uid===ADMIN_UID){
+    if(user.uid === ADMIN_UID){
       loginBox.classList.add("hidden");
       registerBox.classList.add("hidden");
       dashBox.classList.remove("hidden");
       welcomeText.innerText="Admin Dashboard";
       adminPanel.classList.remove("hidden");
-      userInfoLine.innerText="";
-      pwdLine.innerText="";
-      regLocLine.innerText="";
-      curLocLine.innerText="";
-      await loadAllUsersForAdmin();
-      await loadCustomerRequests();
-      liveLocationBtn.style.display = "none";
-      customerServiceSection.style.display = "none";
-      return;
-    }
-    const uRef=doc(db,"users",user.uid);
-    const uSnap=await getDoc(uRef);
-    loginBox.classList.add("hidden");
-    registerBox.classList.add("hidden");
-    dashBox.classList.remove("hidden");
-    adminPanel.classList.add("hidden");
-    liveLocationBtn.style.display = "inline-block";
-    customerServiceSection.style.display = "block";
-    if(!uSnap.exists()){
-      welcomeText.innerText = "Welcome "+(user.email||user.phoneNumber||"");
       userInfoLine.innerText = "";
       pwdLine.innerText = "";
       regLocLine.innerText = "";
       curLocLine.innerText = "";
-      return;
+      await loadAllUsersForAdmin();
+    }else{
+      alert("You are not authorized as admin.");
     }
-    const u = uSnap.data();
-    if(u.status==="inactive"){
-      alert("Your account is deactivated. Contact admin.");
-      await signOut(auth);
+  };
+
+
+  onAuthStateChanged(auth, async (user) => {
+    if(!user){
       showLogin();
       return;
     }
-    welcomeText.innerText = `Welcome ${u.name||"-"}`;
-    userInfoLine.innerText = `Name: ${u.name||"-"} | Mobile: ${u.mobile||"-"}`;
-    pwdLine.innerText = "";
-    regLocLine.innerText = "";
-    curLocLine.innerText = "";
-  });
-
-  window.showLiveLocation = () => {
-    liveLocationDisplay.innerText = "Getting current location...";
-    if (!navigator.geolocation) {
-      liveLocationDisplay.innerText = "Geolocation not supported.";
+    if(user.uid === ADMIN_UID){
+      loginBox.classList.add("hidden");
+      registerBox.classList.add("hidden");
+      dashBox.classList.remove("hidden");
+      welcomeText.innerText="Admin Dashboard";
+      adminPanel.classList.remove("hidden");
+      userInfoLine.innerText = "";
+      pwdLine.innerText = "";
+      regLocLine.innerText = "";
+      curLocLine.innerText = "";
+      await loadAllUsersForAdmin();
       return;
     }
-    navigator.geolocation.getCurrentPosition(pos=>{
-      const lat=pos.coords.latitude.toFixed(5);
-      const lng=pos.coords.longitude.toFixed(5);
-      liveLocationDisplay.innerHTML = `Your current location: <a href="https://www.google.com/maps?q=${lat},${lng}" target="_blank" style="color:#abd6ff;text-decoration:underline">${lat}, ${lng}</a>`;
-    }, ()=>{
-      liveLocationDisplay.innerText = "Unable to get location.";
-    }, {enableHighAccuracy: true,timeout:10000});
+    try{
+      const uRef = doc(db, "users", user.uid);
+      const uSnap = await getDoc(uRef);
+
+      loginBox.classList.add("hidden");
+      registerBox.classList.add("hidden");
+      dashBox.classList.remove("hidden");
+      adminPanel.classList.add("hidden");
+
+      if(!uSnap.exists()){
+        welcomeText.innerText = "Welcome "+(user.email||user.phoneNumber||"");
+        userInfoLine.innerText = "";
+        pwdLine.innerText = "Password: Hidden for security";
+        regLocLine.innerText = "Registered Location: -";
+        curLocLine.innerText = "Current Location: -";
+        return;
+      }
+
+      let u = uSnap.data();
+      if(u.status === "inactive"){
+        alert("Your account is deactivated. Contact support.");
+        await signOut(auth);
+        showLogin();
+        return;
+      }
+      welcomeText.innerText=`Welcome ${u.name||"-"}${u.mobile ? " (" + u.mobile + ")" : ""}`;
+      userInfoLine.innerText = `Name: ${u.name||"-"}${u.mobile ? " | Mobile: " + u.mobile : ""}`;
+      pwdLine.innerText = "Password: Hidden for security";
+      regLocLine.innerHTML = u.regLocation && u.regLocation.lat ? 
+        `Registered Location: <a href="${mapLink(u.regLocation.lat,u.regLocation.lng)}" target="_blank" style="color:#fff;text-decoration:underline">${fmtLoc(u.regLocation)}</a>` :
+        "Registered Location: Not allowed / Not captured";
+
+      let currentLocation = await getGeo();
+      if(currentLocation && currentLocation.lat){
+        curLocLine.innerHTML = `Current Location: <a href="${mapLink(currentLocation.lat,currentLocation.lng)}" target="_blank" style="color:#fff;text-decoration:underline">${fmtLoc(currentLocation)}</a>`;
+        try{
+          await updateDoc(uRef, {lastLocation: currentLocation, lastSeenAt:serverTimestamp()});
+        }catch{}
+      }else{
+        curLocLine.innerText = "Current Location: Not allowed / Not captured";
+      }
+      
+    }catch(e){
+      alert("Profile load error: "+e.message);
+      await signOut(auth);
+      showLogin();
+    }
+  });
+
+
+  window.showLiveLocation = () => {
+    if (!navigator.geolocation) {
+      liveLocationDisplay.innerText = "Geolocation not supported by your browser.";
+      return;
+    }
+    liveLocationDisplay.innerText = "Getting current location...";
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        const lat = pos.coords.latitude.toFixed(5);
+        const lng = pos.coords.longitude.toFixed(5);
+        const url = `https://www.google.com/maps?q=${lat},${lng}`;
+        liveLocationDisplay.innerHTML = `Your current location is: <a href="${url}" target="_blank" style="color:#fff;text-decoration:underline">${lat}, ${lng}</a>`;
+      },
+      () => {
+        liveLocationDisplay.innerText = "Unable to retrieve your location.";
+      },
+      { enableHighAccuracy:true, timeout:10000 }
+    );
   };
 
-  window.logout = async ()=>{
-    await signOut(auth);
-    showLogin();
-  };
 
-  // Show and Hide helper for login/register
-  window.showLogin = ()=>{
-    loginBox.classList.remove("hidden");
-    registerBox.classList.add("hidden");
-    dashBox.classList.add("hidden");
-    adminPanel.classList.add("hidden");
-    liveLocationDisplay.innerText = "";
-    customerServiceSection.style.display = "none";
-    requestStatus.innerText = "";
-  };
+  showLogin();
 
-  window.showRegister = ()=>{
-    loginBox.classList.add("hidden");
-    registerBox.classList.remove("hidden");
-    dashBox.classList.add("hidden");
-    adminPanel.classList.add("hidden");
-    liveLocationDisplay.innerText = "";
-    customerServiceSection.style.display = "none";
-    requestStatus.innerText = "";
-  };
 </script>
 
 </body>
