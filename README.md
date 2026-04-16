@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<title>SB GLOBAL • Secure Service Portal</title>
+<title>SB GLOBAL INDUSTRIES • Secure Service Portal</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
 <style>
@@ -86,7 +86,7 @@ th{font-weight:700}
 <body>
 
 <div class="header">
-  <div class="brand">SB <span>COMENY</span></div>
+  <div class="brand">SB <span>GLOBAL INDUSTRIES</span></div>
   <div class="topBtns">
     <button class="loginBtn" onclick="showLogin()">Login</button>
     <button class="regBtn" onclick="showRegister()">Register</button>
