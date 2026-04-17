@@ -161,7 +161,7 @@ th{font-weight:700}
 </div>
 
 <div class="modal" id="empModal">
-  <img src="https://raw.githubusercontent.com/bilal8766/SB-COMENY/main/naseem.jpeg" alt="Founder Image" />
+  <img src="https://raw.githubusercontent.com/bilal8766/SB-COMENY/main/naseem.jpeg" HR Image" />
   <h3 style="color:#fff;margin:14px 0 0">Naseem Khan – Founder</h3>
   <button onclick="closeEmployee()">Close</button>
 </div>
